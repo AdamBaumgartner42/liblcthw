@@ -1,1 +1,1 @@
-library of Data Structures and Algorithims 
+Library of Data Structures and Algorithims 
