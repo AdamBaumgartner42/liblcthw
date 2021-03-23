@@ -1,6 +1,7 @@
-CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
+CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)
 LIBS=-ldl $(OPTLIBS)
 PREFIX?=/usr/local
+UNAME=$(shell uname)
 
 SOURCES=$(wildcard src/**/*.c src/*.c)
 OBJECTS=$(patsubst %.c,%.o,$(SOURCES))
@@ -17,7 +18,13 @@ all: $(TARGET) $(SO_TARGET) tests
 dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)
 dev: all
 
-$(TESTS):  $(TARGET) $(LIBS) $(SO_TARGET)
+ifeq ($(UNAME), Darwin) #OSX
+$(TESTS): $(TARGET) $(SO_TARGET)
+endif
+
+ifeq ($(UNAME), Linux) #Ubuntu
+$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)
+endif
 
 $(TARGET): CFLAGS +=-fPIC
 $(TARGET): build $(OBJECTS)
