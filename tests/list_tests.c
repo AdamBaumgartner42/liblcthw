@@ -15,12 +15,23 @@ char *test_create()
     return NULL;
 }
 
-char *test_destroy()
+char *test_clear()
 {
-    List_clear_destroy(list);
-    
+    List_clear(list);
+    mu_assert(list->count == 0, "List_clear() fail: count != 0");
+    mu_assert(list->first == NULL, "List_clear() fail: list->first != NULL.");
+    mu_assert(list->last == NULL, "List_clear() fail: list->last != NULL.");
+ 
     return NULL;
 
+}
+
+char *test_destroy()
+{
+    List_destroy(list);
+    // Need a way to test memory free. Folks use valgrind.
+    // I don't know how to use valgrind in unit tests.
+    return NULL;
 }
 
 char *test_push_pop()
@@ -44,7 +55,7 @@ char *test_push_pop()
     val = List_pop(list);
     mu_assert(val == test1, "Wrong value on pop.");
     mu_assert(List_count(list) == 0, "Wrong count after pop.");
-
+    // middle pop is tested in test_remove() 
     return NULL;
 }
 
@@ -91,52 +102,23 @@ char *test_shift()
     return NULL;
 }
 
+
 char *all_tests()
 {
     mu_suite_start();
     
-    mu_run_test(test_create);
-    mu_run_test(test_push_pop);
-    mu_run_test(test_unshift);
-    mu_run_test(test_remove);
-    mu_run_test(test_shift);
-    mu_run_test(test_destroy);
+    mu_run_test(test_create); // Creates List
+    mu_run_test(test_push_pop); // Adds, then removes 3 values
+    mu_run_test(test_unshift); // Adds 3 values
+    mu_run_test(test_remove); // Removes & checks middle value
+    mu_run_test(test_shift); // Removes & checksi last 2 values
+    mu_run_test(test_clear);
+    mu_run_test(test_destroy); // without mu_assert()
+   
 
     return NULL;
 }
 
 RUN_TESTS(all_tests);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

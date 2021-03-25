@@ -38,13 +38,13 @@ void List_push(List * list, void *value)
     
     node->value = value;
 
-    if (list -> last == NULL) {
-        list->first = node; 
-        list->last = node;
+    if (list -> last == NULL) { // special case for brand new list (no data)
+        list->first = node;  // Only 1 node (first and last = same thing)
+        list->last = node;  // Only a single node (same value)
     } else {
-        list->last->next = node;
-        node->prev = list->last;
-        list->last = node;
+        list->last->next = node; // add node to the end
+        node->prev = list->last; // update node to have prev be previous last
+        list->last = node; // update list to have last be node
     }
 
     list-> count++;
@@ -108,15 +108,16 @@ void *List_remove(List * list, ListNode * node)
                 "Invalid list, somehow got a next that is NULL.");
         list->last->next = NULL;
     } else { 
-        ListNode *after = node->next;
+        ListNode *after = node->next; 
         ListNode *before = node->prev; 
+        // update link where node used to be 
         after->prev = before;
         before->next = after;
     }
 
     list->count--;
-    result = node->value;
-    free(node);
+    result = node->value; // log value for error
+    free(node); 
 
 error:
     return result;

@@ -12,8 +12,9 @@
 $(SO_TARGET)	Makefile	/^$(SO_TARGET): $(TARGET) $(OBJECTS)$/;"	t
 $(TARGET)	Makefile	/^$(TARGET): CFLAGS +=-fPIC$/;"	t
 $(TARGET)	Makefile	/^$(TARGET): build $(OBJECTS)$/;"	t
-$(TESTS)	Makefile	/^$(TESTS):  $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
-CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)$/;"	m
+$(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
+$(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
+CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
 CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	m
 LIBS	Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m
 LIST_FOREACH	src/lcthw/list.h	/^#define LIST_FOREACH(/;"	d
@@ -41,6 +42,7 @@ SO_TARGET	Makefile	/^SO_TARGET=$(patsubst %.a,%.so,$(TARGET))$/;"	m
 TARGET	Makefile	/^TARGET=build\/liblcthw.a$/;"	m
 TESTS	Makefile	/^TESTS=$(patsubst %.c,%,$(TEST_SRC))$/;"	m
 TEST_SRC	Makefile	/^TEST_SRC=$(wildcard tests\/*_tests.c)$/;"	m
+UNAME	Makefile	/^UNAME=$(shell uname)$/;"	m
 __dbg_h__	src/lcthw/dbg.h	/^#define __dbg_h__$/;"	d
 _minunit_h	tests/minunit.h	/^#define _minunit_h$/;"	d
 all	Makefile	/^all: $(TARGET) $(SO_TARGET) tests$/;"	t
@@ -73,6 +75,7 @@ sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
 test2	tests/list_tests.c	/^char *test2 = "test2 data";$/;"	v	typeref:typename:char *
 test3	tests/list_tests.c	/^char *test3 = "test3 data";$/;"	v	typeref:typename:char *
+test_clear	tests/list_tests.c	/^char *test_clear()$/;"	f	typeref:typename:char *
 test_create	tests/list_tests.c	/^char *test_create()$/;"	f	typeref:typename:char *
 test_destroy	tests/list_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
