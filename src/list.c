@@ -25,6 +25,19 @@ void List_clear(List * list)
     }
 }
 
+void List_clear_destroy_combo(List * list)
+{
+    LIST_FOREACH(list, first, next, cur) {
+        if (cur->prev){
+            free(cur->prev->value);
+            free(cur->prev);
+        }
+    }
+    free(list->last);
+    free(list);
+}
+
+
 void List_clear_destroy(List * list)
 {
     List_clear(list);
@@ -122,62 +135,5 @@ void *List_remove(List * list, ListNode * node)
 error:
     return result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

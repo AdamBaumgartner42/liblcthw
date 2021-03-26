@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/adam/Documents/LCTHW/liblcthw/	//
+!_TAG_PROC_CWD	/home/adam/Documents/liblcthw_ab/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -24,6 +24,7 @@ ListNode	src/lcthw/list.h	/^typedef struct ListNode {$/;"	s
 ListNode	src/lcthw/list.h	/^} ListNode;$/;"	t	typeref:struct:ListNode
 List_clear	src/list.c	/^void List_clear(List * list)$/;"	f	typeref:typename:void
 List_clear_destroy	src/list.c	/^void List_clear_destroy(List * list)$/;"	f	typeref:typename:void
+List_clear_destroy_combo	src/list.c	/^void List_clear_destroy_combo(List * list)$/;"	f	typeref:typename:void
 List_count	src/lcthw/list.h	/^#define List_count(/;"	d
 List_create	src/list.c	/^List *List_create()$/;"	f	typeref:typename:List *
 List_destroy	src/list.c	/^void List_destroy(List * list)$/;"	f	typeref:typename:void
@@ -75,7 +76,6 @@ sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
 test2	tests/list_tests.c	/^char *test2 = "test2 data";$/;"	v	typeref:typename:char *
 test3	tests/list_tests.c	/^char *test3 = "test3 data";$/;"	v	typeref:typename:char *
-test_clear	tests/list_tests.c	/^char *test_clear()$/;"	f	typeref:typename:char *
 test_create	tests/list_tests.c	/^char *test_create()$/;"	f	typeref:typename:char *
 test_destroy	tests/list_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *

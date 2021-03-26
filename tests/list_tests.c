@@ -1,6 +1,7 @@
 #include "minunit.h"
 #include <lcthw/list.h>
 #include <assert.h>
+#include <lcthw/dbg.h>
 
 static List *list = NULL;
 char *test1 = "test1 data";
@@ -15,22 +16,11 @@ char *test_create()
     return NULL;
 }
 
-char *test_clear()
-{
-    List_clear(list);
-    mu_assert(list->count == 0, "List_clear() fail: count != 0");
-    mu_assert(list->first == NULL, "List_clear() fail: list->first != NULL.");
-    mu_assert(list->last == NULL, "List_clear() fail: list->last != NULL.");
- 
-    return NULL;
-
-}
-
 char *test_destroy()
 {
-    List_destroy(list);
-    // Need a way to test memory free. Folks use valgrind.
-    // I don't know how to use valgrind in unit tests.
+    //List_clear_destroy(list);
+    List_clear_destroy_combo(list);
+    
     return NULL;
 }
 
@@ -111,9 +101,8 @@ char *all_tests()
     mu_run_test(test_push_pop); // Adds, then removes 3 values
     mu_run_test(test_unshift); // Adds 3 values
     mu_run_test(test_remove); // Removes & checks middle value
-    mu_run_test(test_shift); // Removes & checksi last 2 values
-    mu_run_test(test_clear);
-    mu_run_test(test_destroy); // without mu_assert()
+    mu_run_test(test_shift); // Removes & checks last 2 values
+    mu_run_test(test_destroy); // Free List from memory 
    
 
     return NULL;
