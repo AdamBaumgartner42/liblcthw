@@ -22,9 +22,6 @@ List	src/lcthw/list.h	/^typedef struct List { $/;"	s
 List	src/lcthw/list.h	/^} List;$/;"	t	typeref:struct:List
 ListNode	src/lcthw/list.h	/^typedef struct ListNode {$/;"	s
 ListNode	src/lcthw/list.h	/^} ListNode;$/;"	t	typeref:struct:ListNode
-List_clear	src/list.c	/^void List_clear(List * list)$/;"	f	typeref:typename:void
-List_clear_destroy	src/list.c	/^void List_clear_destroy(List * list)$/;"	f	typeref:typename:void
-List_clear_destroy_combo	src/list.c	/^void List_clear_destroy_combo(List * list)$/;"	f	typeref:typename:void
 List_count	src/lcthw/list.h	/^#define List_count(/;"	d
 List_create	src/list.c	/^List *List_create()$/;"	f	typeref:typename:List *
 List_destroy	src/list.c	/^void List_destroy(List * list)$/;"	f	typeref:typename:void
