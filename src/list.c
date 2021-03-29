@@ -18,6 +18,12 @@ void List_destroy(List * list)
     free(list);
 }
 
+void List_clear(List *list)
+{
+    // only here for github example
+    
+}
+
 void List_push(List * list, void *value)
 {
     ListNode *node = calloc(1, sizeof(ListNode));
