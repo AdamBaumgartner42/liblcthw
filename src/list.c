@@ -147,7 +147,7 @@ void print_List(List *list)
     printf("\n***print_List***\n");
     printf("List_count: %d\n", List_count(list));
     LIST_FOREACH(list, first, next, cur) { 
-        printf("%s\n", cur->value);
+        printf("%p\n", cur->value);
     }
     printf("\n");
 }

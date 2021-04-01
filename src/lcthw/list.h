@@ -39,22 +39,16 @@ ListNode *_node = NULL;\
 ListNode *V = NULL;\
 for(V = _node = L->S; _node != NULL; V = _node = _node->M)
 
+#define LIST_FORBOTH(L1,S,M,V1,L2,V2)\
+ListNode *_node1 = NULL;\
+ListNode *_node2 = NULL;\
+ListNode *V1 = NULL;\
+ListNode *V2 = NULL;\
+for(V1 = _node1 = L1->S, V2 = _node2 = L2->S;\
+    _node1 != NULL || _node2 != NULL;\
+    V1 = _node1 = _node1->M , V2 = _node2 = _node2->M)
+
+
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

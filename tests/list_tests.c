@@ -4,6 +4,7 @@
 #include <lcthw/dbg.h>
 
 static List *list = NULL;
+static List *list_copy = NULL;
 char *test1 = "test1 data";
 char *test2 = "test2 data";
 char *test3 = "test3 data";
@@ -13,6 +14,17 @@ char *test_create()
 {
     list = List_create();
     mu_assert(list != NULL, "Failed to create list.");
+
+    return NULL;
+}
+
+char *copy_create()
+{
+    list = List_create();
+    mu_assert(list != NULL, "Failed to create list.");
+    
+    list_copy = List_create();
+    mu_assert(list_copy != NULL, "Failed to create list.");
 
     return NULL;
 }
@@ -95,22 +107,57 @@ char *test_shift()
 char *test_insert_after()
 {
     mu_assert(List_count(list) >= 2, \
-            "List needs >=2 values for insert_after test");
+            "List needs >=2 values for test_insert_after()");
     
-    int _record_1 = List_count(list);
+    int _count = List_count(list);
 
-    // insert a value after list->first;
     List_insert_after(list, list->first, test4);
     mu_assert(list->first->next->value == test4,\
             "Wrong value on insert");
-    mu_assert(List_count(list) == (_record_1 + 1),\
+    mu_assert(List_count(list) == (_count + 1),\
             "Wrong count on insert");
 
-    // remove the insert_after test value
+
+    // This is not test related... 
+    // Do I have cleanup? Should it be part of the specific test
     char *val = List_remove(list, list->first->next);
     
-    mu_assert(val == test4, "Error removing insert_after test value");
+    mu_assert(val == test4, \
+            "Error removing insert_after test value");
 
+    return NULL;
+}
+
+char *copy_list()
+{
+    /*
+    Input situations:
+    List (0 nodes) -> 
+    List (1 node) -> 
+    List (2+ nodes) -> Only test for this condition.
+    */
+     
+    mu_assert(List_count(list) >= 2, \
+            "List needs >=2 values for test_copy()");
+    mu_assert(list_copy != NULL, "Must create list_copy");
+
+    //int _count = List_count(list);
+
+    //List_copy(list, list_copy);
+    
+    //Compare List params
+    mu_assert(list->count == list_copy->count, "Incorrect count after list_copy().");
+    mu_assert(list->first == list_copy->first, "Incorrect first value after list_copy().");
+    mu_assert(list->last == list_copy->last, "Incorrect last value after list_copy().");
+
+    //Compare ListNode values
+    LIST_FORBOTH(list, first, next, cur1, list_copy, cur2){
+        // Compare the node values of list and list_copy. 
+        mu_assert(cur1->value == cur2->value, "Incorrect node value");           
+    }
+
+
+    
     return NULL;
 }
     
@@ -119,7 +166,8 @@ char *test_insert_after()
 char *all_tests()
 {
     mu_suite_start();
-    
+   
+    // Short Tests
     mu_run_test(test_create); // Creates List
     mu_run_test(test_push_pop); // Adds, then removes 3 values
     mu_run_test(test_unshift); // Adds 3 values
@@ -127,6 +175,13 @@ char *all_tests()
     mu_run_test(test_remove); // Removes & checks middle value
     mu_run_test(test_shift); // Removes & checks last 2 values
     mu_run_test(test_destroy); // Free List from memory 
+
+    // Test Copy
+    mu_run_test(copy_create);
+    mu_run_test(test_unshift); // Adds 3 values
+    //mu_run_test(copy_list); 
+
+    
    
 
     return NULL;
