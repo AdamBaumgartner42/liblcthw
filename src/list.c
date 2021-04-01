@@ -20,6 +20,7 @@ void List_destroy(List * list)
 
 void List_push(List * list, void *value)
 {
+    check(list != NULL, "Invalid list."); 
     ListNode *node = calloc(1, sizeof(ListNode));
     check_mem(node);
     
@@ -42,12 +43,17 @@ error:
 
 void *List_pop(List * list)
 {
+    check(list != NULL, "Invalid list."); 
     ListNode *node = list->last;
     return node != NULL ? List_remove(list, node) : NULL;
+error:
+    return NULL;
 }
 
 void List_unshift(List * list, void *value)
+
 {
+    check(list != NULL, "Invalid list.");
     ListNode *node = calloc(1, sizeof(ListNode));
     check_mem(node);
     
@@ -70,14 +76,19 @@ error:
 
 void *List_shift(List * list)
 {
+    check(list != NULL, "Invalid list."); 
     ListNode *node = list->first;
     return node != NULL ? List_remove(list, node) : NULL;
+error:
+    return NULL;
 }
 
 void *List_remove(List * list, ListNode * node)
 {
     void *result = NULL;
 
+    check(list != NULL, "Invalid list."); 
+    check(node != NULL, "Invalid node."); 
     check(list->first && list->last, "List is empty.");
     check(node, "node can't be NULL");
 
@@ -110,4 +121,34 @@ error:
     return result;
 }
 
+void List_insert_after(List *list, ListNode *node, void *value)
+{
+    check(list != NULL, "Invalid List");
+    check(node != NULL, "Node previous to insert is NULL");
+    check(node->next != NULL, "Missing trailing node to insert before");
+
+    ListNode *insert = calloc(1, sizeof(ListNode));
+    insert->value = value;
+
+    insert->next = node->next; 
+    node->next->prev = insert;
+    node->next = insert;
+    insert->prev = node;
+
+    list->count++;
+
+error:
+    return;
+}
+
+
+void print_List(List *list)
+{
+    printf("\n***print_List***\n");
+    printf("List_count: %d\n", List_count(list));
+    LIST_FOREACH(list, first, next, cur) { 
+        printf("%s\n", cur->value);
+    }
+    printf("\n");
+}
 

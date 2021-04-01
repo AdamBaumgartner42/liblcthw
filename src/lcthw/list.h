@@ -31,6 +31,8 @@ void List_unshift(List * list, void *value);
 void *List_shift(List * list);
 
 void *List_remove(List * list, ListNode *node);
+void List_insert_after(List * list, ListNode *node, void *value);
+void print_List(List * list);
 
 #define LIST_FOREACH(L, S, M, V)\
 ListNode *_node = NULL;\
