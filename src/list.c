@@ -152,3 +152,20 @@ void print_List(List *list)
     printf("\n");
 }
 
+void List_copy(List *list , List *list_copy)
+{
+    
+    check(list != NULL, "Invalid List");
+    check(list_copy != NULL, "Invalid List");
+
+
+    LIST_FOREACH(list, first, next, cur){
+        List_push(list_copy, cur->value);
+    }
+
+error:
+    return;
+}
+
+
+

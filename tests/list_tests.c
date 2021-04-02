@@ -143,12 +143,12 @@ char *copy_list()
 
     //int _count = List_count(list);
 
-    //List_copy(list, list_copy);
+    List_copy(list, list_copy);
     
     //Compare List params
     mu_assert(list->count == list_copy->count, "Incorrect count after list_copy().");
-    mu_assert(list->first == list_copy->first, "Incorrect first value after list_copy().");
-    mu_assert(list->last == list_copy->last, "Incorrect last value after list_copy().");
+    mu_assert(list->first->value == list_copy->first->value, "Incorrect first value after list_copy().");
+    mu_assert(list->last->value == list_copy->last->value, "Incorrect last value after list_copy().");
 
     //Compare ListNode values
     LIST_FORBOTH(list, first, next, cur1, list_copy, cur2){
@@ -179,8 +179,8 @@ char *all_tests()
     // Test Copy
     mu_run_test(copy_create);
     mu_run_test(test_unshift); // Adds 3 values
-    //mu_run_test(copy_list); 
-
+    mu_run_test(copy_list); 
+    
     
    
 
