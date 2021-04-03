@@ -31,6 +31,7 @@ List_destroy	src/list.c	/^void List_destroy(List * list)$/;"	f	typeref:typename:
 List_first	src/lcthw/list.h	/^#define List_first(/;"	d
 List_insert_after	src/list.c	/^void List_insert_after(List *list, ListNode *node, void *value)$/;"	f	typeref:typename:void
 List_last	src/lcthw/list.h	/^#define List_last(/;"	d
+List_merge	src/list.c	/^void List_merge(List *listA, List *listB, List *target)$/;"	f	typeref:typename:void
 List_pop	src/list.c	/^void *List_pop(List * list)$/;"	f	typeref:typename:void *
 List_push	src/list.c	/^void List_push(List * list, void *value)$/;"	f	typeref:typename:void
 List_remove	src/list.c	/^void *List_remove(List * list, ListNode * node)$/;"	f	typeref:typename:void *

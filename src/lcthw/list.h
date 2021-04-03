@@ -34,6 +34,8 @@ void *List_remove(List * list, ListNode *node);
 void List_insert_after(List * list, ListNode *node, void *value);
 void print_List(List * list);
 void List_copy(List * list, List * list_copy);
+void List_merge(List *listA, List *listB, List *target); 
+
 
 #define LIST_FOREACH(L, S, M, V)\
 ListNode *_node = NULL;\

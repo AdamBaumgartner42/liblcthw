@@ -267,7 +267,7 @@ char *merge_list()
     mu_assert(list3 != NULL, "Merge target must != NULL");
     
     // *** List Merge ***
-    // List_merge(list1, list2, list3); 
+    List_merge(list1, list2, list3); 
 
     // *** Post check ***
     // Check list3->count = list1->count + list2->count
@@ -326,7 +326,7 @@ char *all_tests()
     mu_run_test(merge_create); // Creates list1, list2, list3
     mu_run_test(merge_push_1); // Adds values to list1
     mu_run_test(merge_push_2); // Adds values to list2 
-    mu_run_test(merge_push_3); // Adds values to list3 (*check tests only*)
+    //mu_run_test(merge_push_3); // Adds values to list3 (*check tests only*) 
     mu_run_test(merge_list); // Merges list1 & list2 into list3
     mu_run_test(merge_destroy); // Destroys list1, list2, list3
    

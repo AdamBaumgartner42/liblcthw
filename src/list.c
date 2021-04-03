@@ -168,4 +168,20 @@ error:
 }
 
 
+void List_merge(List *listA, List *listB, List *target)
+{
+    check(listA != NULL, "Invalid list input");
+    check(listB != NULL, "Invalid list input");
+    check(target != NULL, "Invalid list input");
 
+    LIST_FOREACH(listA, first, next, cur){
+        List_push(target, cur->value);
+    }
+
+    LIST_FORNEXT(listB, first, next, cur){
+        List_push(target, cur->value);
+    }
+
+error:
+    return;
+}
