@@ -130,18 +130,9 @@ char *test_insert_after()
 
 char *copy_list()
 {
-    /*
-    Input situations:
-    List (0 nodes) -> 
-    List (1 node) -> 
-    List (2+ nodes) -> Only test for this condition.
-    */
-     
     mu_assert(List_count(list) >= 2, \
             "List needs >=2 values for test_copy()");
     mu_assert(list_copy != NULL, "Must create list_copy");
-
-    //int _count = List_count(list);
 
     List_copy(list, list_copy);
     
@@ -155,11 +146,18 @@ char *copy_list()
         // Compare the node values of list and list_copy. 
         mu_assert(cur1->value == cur2->value, "Incorrect node value");           
     }
-
-
     
     return NULL;
 }
+
+char *copy_destroy()
+{
+    List_destroy(list); 
+    List_destroy(list_copy);
+    
+    return NULL;
+}
+
     
 
 
@@ -180,7 +178,7 @@ char *all_tests()
     mu_run_test(copy_create);
     mu_run_test(test_unshift); // Adds 3 values
     mu_run_test(copy_list); 
-    
+    mu_run_test(copy_destroy);    
     
    
 
