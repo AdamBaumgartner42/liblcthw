@@ -17,15 +17,19 @@ $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
 CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
 CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	m
 LIBS	Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m
+LIST_FORBOTH	src/lcthw/list.h	/^#define LIST_FORBOTH(/;"	d
 LIST_FOREACH	src/lcthw/list.h	/^#define LIST_FOREACH(/;"	d
+LIST_FORNEXT	src/lcthw/list.h	/^#define LIST_FORNEXT(/;"	d
 List	src/lcthw/list.h	/^typedef struct List { $/;"	s
 List	src/lcthw/list.h	/^} List;$/;"	t	typeref:struct:List
 ListNode	src/lcthw/list.h	/^typedef struct ListNode {$/;"	s
 ListNode	src/lcthw/list.h	/^} ListNode;$/;"	t	typeref:struct:ListNode
+List_copy	src/list.c	/^void List_copy(List *list , List *list_copy)$/;"	f	typeref:typename:void
 List_count	src/lcthw/list.h	/^#define List_count(/;"	d
 List_create	src/list.c	/^List *List_create()$/;"	f	typeref:typename:List *
 List_destroy	src/list.c	/^void List_destroy(List * list)$/;"	f	typeref:typename:void
 List_first	src/lcthw/list.h	/^#define List_first(/;"	d
+List_insert_after	src/list.c	/^void List_insert_after(List *list, ListNode *node, void *value)$/;"	f	typeref:typename:void
 List_last	src/lcthw/list.h	/^#define List_last(/;"	d
 List_pop	src/list.c	/^void *List_pop(List * list)$/;"	f	typeref:typename:void *
 List_push	src/list.c	/^void List_push(List * list, void *value)$/;"	f	typeref:typename:void
@@ -52,6 +56,9 @@ check_debug	src/lcthw/dbg.h	/^#define check_debug(/;"	d
 check_mem	src/lcthw/dbg.h	/^#define check_mem(/;"	d
 clean	Makefile	/^clean:$/;"	t
 clean_errno	src/lcthw/dbg.h	/^#define clean_errno(/;"	d
+copy_create	tests/list_tests.c	/^char *copy_create()$/;"	f	typeref:typename:char *
+copy_destroy	tests/list_tests.c	/^char *copy_destroy()$/;"	f	typeref:typename:char *
+copy_list	tests/list_tests.c	/^char *copy_list()$/;"	f	typeref:typename:char *
 count	src/lcthw/list.h	/^    int count; $/;"	m	struct:List	typeref:typename:int
 debug	src/lcthw/dbg.h	/^#define debug(/;"	d
 dev	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	t
@@ -61,20 +68,39 @@ install	Makefile	/^install: all$/;"	t
 last	src/lcthw/list.h	/^    ListNode *last;$/;"	m	struct:List	typeref:typename:ListNode *
 lcthw_List_h	src/lcthw/list.h	/^#define lcthw_List_h$/;"	d
 list	tests/list_tests.c	/^static List *list = NULL;$/;"	v	typeref:typename:List *	file:
+list1	tests/list_tests.c	/^static List *list1 = NULL;$/;"	v	typeref:typename:List *	file:
+list2	tests/list_tests.c	/^static List *list2 = NULL;$/;"	v	typeref:typename:List *	file:
+list3	tests/list_tests.c	/^static List *list3 = NULL;$/;"	v	typeref:typename:List *	file:
+list_copy	tests/list_tests.c	/^static List *list_copy = NULL;$/;"	v	typeref:typename:List *	file:
 log_err	src/lcthw/dbg.h	/^#define log_err(/;"	d
 log_info	src/lcthw/dbg.h	/^#define log_info(/;"	d
 log_warn	src/lcthw/dbg.h	/^#define log_warn(/;"	d
+mark3	tests/list_tests.c	/^static ListNode *mark3 = NULL;$/;"	v	typeref:typename:ListNode *	file:
+merge_create	tests/list_tests.c	/^char *merge_create()$/;"	f	typeref:typename:char *
+merge_destroy	tests/list_tests.c	/^char *merge_destroy()$/;"	f	typeref:typename:char *
+merge_list	tests/list_tests.c	/^char *merge_list()$/;"	f	typeref:typename:char *
+merge_push_1	tests/list_tests.c	/^char *merge_push_1()$/;"	f	typeref:typename:char *
+merge_push_2	tests/list_tests.c	/^char *merge_push_2()$/;"	f	typeref:typename:char *
+merge_push_3	tests/list_tests.c	/^char *merge_push_3()$/;"	f	typeref:typename:char *
 mu_assert	tests/minunit.h	/^#define mu_assert(/;"	d
 mu_run_test	tests/minunit.h	/^#define mu_run_test(/;"	d
 mu_suite_start	tests/minunit.h	/^#define mu_suite_start(/;"	d
 next	src/lcthw/list.h	/^    struct ListNode *next;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref:struct:ListNode *
+print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
 sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
 test2	tests/list_tests.c	/^char *test2 = "test2 data";$/;"	v	typeref:typename:char *
 test3	tests/list_tests.c	/^char *test3 = "test3 data";$/;"	v	typeref:typename:char *
+test4	tests/list_tests.c	/^char *test4 = "test4 data";$/;"	v	typeref:typename:char *
+test5	tests/list_tests.c	/^char *test5 = "test5 data";$/;"	v	typeref:typename:char *
+test6	tests/list_tests.c	/^char *test6 = "test6 data";$/;"	v	typeref:typename:char *
+test7	tests/list_tests.c	/^char *test7 = "test7 data";$/;"	v	typeref:typename:char *
+test8	tests/list_tests.c	/^char *test8 = "test8 data";$/;"	v	typeref:typename:char *
+test9	tests/list_tests.c	/^char *test9 = "test9 data";$/;"	v	typeref:typename:char *
 test_create	tests/list_tests.c	/^char *test_create()$/;"	f	typeref:typename:char *
 test_destroy	tests/list_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:char *
+test_insert_after	tests/list_tests.c	/^char *test_insert_after()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
 test_remove	tests/list_tests.c	/^char *test_remove()$/;"	f	typeref:typename:char *
 test_shift	tests/list_tests.c	/^char *test_shift()$/;"	f	typeref:typename:char *

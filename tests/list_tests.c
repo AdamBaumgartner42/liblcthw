@@ -5,10 +5,21 @@
 
 static List *list = NULL;
 static List *list_copy = NULL;
+static List *list1 = NULL;
+static List *list2 = NULL;
+static List *list3 = NULL;
+
+static ListNode *mark3 = NULL;
+
 char *test1 = "test1 data";
 char *test2 = "test2 data";
 char *test3 = "test3 data";
 char *test4 = "test4 data";
+char *test5 = "test5 data";
+char *test6 = "test6 data";
+char *test7 = "test7 data";
+char *test8 = "test8 data";
+char *test9 = "test9 data";
 
 char *test_create()
 {
@@ -158,8 +169,139 @@ char *copy_destroy()
     return NULL;
 }
 
+char *merge_create()
+{
+    list1 = List_create();
+    mu_assert(list1 != NULL, "Failed to create list.");
     
+    list2 = List_create();
+    mu_assert(list2 != NULL, "Failed to create list.");
+    
+    list3 = List_create();
+    mu_assert(list3 != NULL, "Failed to create list.");
 
+    return NULL;
+}
+
+char *merge_push_1()
+{
+    List_push(list1, test1);
+    mu_assert(List_last(list1) == test1, "Wrong first value.");
+
+    List_push(list1, test2);
+    mu_assert(List_last(list1) == test2, "Wrong first value.");
+
+    List_push(list1, test3);
+    mu_assert(List_last(list1) == test3, "Wrong last value.");
+    
+    mu_assert(List_count(list1) == 3, "Wrong count on unshift.");
+
+    return NULL;
+}
+
+char *merge_push_2()
+{
+    List_push(list2, test4);
+    mu_assert(List_last(list2) == test4, "Wrong last value.");
+
+    List_push(list2, test5);
+    mu_assert(List_last(list2) == test5, "Wrong last value.");
+
+    List_push(list2, test6);
+    mu_assert(List_last(list2) == test6, "Wrong last value.");
+
+    List_push(list2, test7);
+    mu_assert(List_last(list2) == test7, "Wrong last value.");
+    
+    List_push(list2, test8);
+    mu_assert(List_last(list2) == test8, "Wrong last value.");
+
+    List_push(list2, test9);
+    mu_assert(List_last(list2) == test9, "Wrong last value.");
+
+    mu_assert(List_count(list2) == 6, "Wrong count on push.");
+
+    return NULL;
+}
+
+char *merge_push_3()
+{
+    List_push(list3, test1);
+    mu_assert(List_last(list3) == test1, "Wrong first value.");
+
+    List_push(list3, test2);
+    mu_assert(List_last(list3) == test2, "Wrong first value.");
+
+    List_push(list3, test3);
+    mu_assert(List_last(list3) == test3, "Wrong last value.");
+
+    List_push(list3, test4);
+    mu_assert(List_last(list3) == test4, "Wrong last value.");
+
+    List_push(list3, test5);
+    mu_assert(List_last(list3) == test5, "Wrong last value.");
+
+    List_push(list3, test6);
+    mu_assert(List_last(list3) == test6, "Wrong last value.");
+
+    List_push(list3, test7);
+    mu_assert(List_last(list3) == test7, "Wrong last value.");
+    
+    List_push(list3, test8);
+    mu_assert(List_last(list3) == test8, "Wrong last value.");
+
+    List_push(list3, test9);
+    mu_assert(List_last(list3) == test9, "Wrong last value.");
+
+    mu_assert(List_count(list3) == 9, "Wrong count on push.");
+
+    return NULL;
+}
+
+
+char *merge_list()
+{
+    // *** Init check ***
+    mu_assert(List_count(list1) >= 2, "Merge list must be >2");
+    mu_assert(List_count(list2) >= 2, "Merge list must be >2");
+    mu_assert(list3 != NULL, "Merge target must != NULL");
+    
+    // *** List Merge ***
+    // List_merge(list1, list2, list3); 
+
+    // *** Post check ***
+    // Check list3->count = list1->count + list2->count
+    mu_assert(List_count(list3) == List_count(list1) + List_count(list2),\
+            "Wrong list3 count on merge.");
+
+    // Set mark3 to start of merged list
+    mark3 = list3->first;
+    
+    // Compare merged list to values of first list
+    LIST_FOREACH(list1, first, next, cur){
+        //printf("list1:%s, list3:%s\n", cur->value, mark3->value);
+        mu_assert(cur->value == mark3->value, "Merged list value error");
+        mark3 = mark3->next; // iterate list3
+    }
+    
+    // Compare merged list to values of second list
+    LIST_FORNEXT(list2, first, next, cur){
+        //printf("list2:%s, list3:%s\n", cur->value, mark3->value);
+        mu_assert(cur->value == mark3->value, "Merged list value error");
+        mark3 = mark3->next; // iterate list3
+    }
+
+    return NULL;
+}
+
+char *merge_destroy()
+{
+    List_destroy(list1);
+    List_destroy(list2);
+    List_destroy(list3);
+
+    return NULL;
+}
 
 char *all_tests()
 {
@@ -180,6 +322,13 @@ char *all_tests()
     mu_run_test(copy_list); 
     mu_run_test(copy_destroy);    
     
+    // Test Merge
+    mu_run_test(merge_create); // Creates list1, list2, list3
+    mu_run_test(merge_push_1); // Adds values to list1
+    mu_run_test(merge_push_2); // Adds values to list2 
+    mu_run_test(merge_push_3); // Adds values to list3 (*check tests only*)
+    mu_run_test(merge_list); // Merges list1 & list2 into list3
+    mu_run_test(merge_destroy); // Destroys list1, list2, list3
    
 
     return NULL;
