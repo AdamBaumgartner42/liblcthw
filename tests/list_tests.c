@@ -393,7 +393,7 @@ char *split_list_odd()
     mu_assert(List_count(list1) >= 1, "List needs more than one value to split");
    
     // ** Main Function **
-    //List_split(list1, list2, list3);
+    List_half_split(list1, list2, list3);
     
     //** Post Test ** 
     mu_assert((List_count(list1)/2) == List_count(list2),\
@@ -416,8 +416,15 @@ char *split_list_odd()
 
     return NULL;
 }
-        
 
+char *split_destroy()
+{
+    List_destroy(list1);
+    List_destroy(list2);
+    List_destroy(list3);
+
+    return NULL;
+}
 
 
 
@@ -451,9 +458,9 @@ char *all_tests()
     // Test Split - odd
     mu_run_test(split_create); // Creates list1, list2, list3
     mu_run_test(split_push_odd); // Adds start values to list1
-    mu_run_test(split_push_odd_result); // list2, list3 (*check tests only*)
+    //mu_run_test(split_push_odd_result); // list2, list3 (*check tests only*)
     mu_run_test(split_list_odd); // Splits list1 into list2 and list3
-    //mu_run_test(split_destroy); // Destroys list1, list2, list3
+    mu_run_test(split_destroy); // Destroys list1, list2, list3
 
     //Test Split - even
     //mu_run_test(split_create); // Creates list1, list2, list3

@@ -185,3 +185,31 @@ void List_merge(List *listA, List *listB, List *target)
 error:
     return;
 }
+
+void List_half_split(List *total, List *listA, List *listB)
+{
+    check(total != NULL, "total list must be initialized"); 
+    check(listA != NULL, "listA must be initialized"); 
+    check(listB != NULL, "listB list must be initialized"); 
+    
+    check(List_count(total) > 1, "total list must be at least 2 or more values");
+
+    // Find half position:
+    int half_mark = List_count(total)/2;
+    int index = 0; 
+
+    // Push values around the half position
+    LIST_FOREACH(total, first, next, cur){
+        if (index < half_mark){
+            List_push(listA, cur->value);
+        } else { 
+            List_push(listB, cur->value);
+        }
+        index++;
+    }
+
+error:
+    return;
+}
+
+
