@@ -9,7 +9,7 @@ static List *list1 = NULL;
 static List *list2 = NULL;
 static List *list3 = NULL;
 
-static ListNode *mark3 = NULL;
+static ListNode *mark = NULL;
 
 char *test1 = "test1 data";
 char *test2 = "test2 data";
@@ -274,21 +274,21 @@ char *merge_list()
     mu_assert(List_count(list3) == List_count(list1) + List_count(list2),\
             "Wrong list3 count on merge.");
 
-    // Set mark3 to start of merged list
-    mark3 = list3->first;
+    // Set mark to start of merged list
+    mark = list3->first;
     
     // Compare merged list to values of first list
     LIST_FOREACH(list1, first, next, cur){
-        //printf("list1:%s, list3:%s\n", cur->value, mark3->value);
-        mu_assert(cur->value == mark3->value, "Merged list value error");
-        mark3 = mark3->next; // iterate list3
+        //printf("list1:%s, list3:%s\n", cur->value, mark->value);
+        mu_assert(cur->value == mark->value, "Merged list value error");
+        mark = mark->next; // iterate list3
     }
     
     // Compare merged list to values of second list
     LIST_FORNEXT(list2, first, next, cur){
-        //printf("list2:%s, list3:%s\n", cur->value, mark3->value);
-        mu_assert(cur->value == mark3->value, "Merged list value error");
-        mark3 = mark3->next; // iterate list3
+        //printf("list2:%s, list3:%s\n", cur->value, mark->value);
+        mu_assert(cur->value == mark->value, "Merged list value error");
+        mark = mark->next; // iterate list3
     }
 
     return NULL;
@@ -302,6 +302,124 @@ char *merge_destroy()
 
     return NULL;
 }
+
+char *split_create()
+{
+    list1 = List_create();
+    mu_assert(list1 != NULL, "Failed to create list.");
+    
+    list2 = List_create();
+    mu_assert(list2 != NULL, "Failed to create list.");
+
+    list3 = List_create();
+    mu_assert(list3 != NULL, "Failed to create list.");
+
+    return NULL;
+}
+
+char *split_push_odd()
+{
+    List_push(list1, test1);
+    mu_assert(List_last(list1) == test1, "Wrong first value.");
+
+    List_push(list1, test2);
+    mu_assert(List_last(list1) == test2, "Wrong first value.");
+
+    List_push(list1, test3);
+    mu_assert(List_last(list1) == test3, "Wrong last value.");
+
+    List_push(list1, test4);
+    mu_assert(List_last(list1) == test4, "Wrong last value.");
+
+    List_push(list1, test5);
+    mu_assert(List_last(list1) == test5, "Wrong last value.");
+
+    List_push(list1, test6);
+    mu_assert(List_last(list1) == test6, "Wrong last value.");
+
+    List_push(list1, test7);
+    mu_assert(List_last(list1) == test7, "Wrong last value.");
+    
+    List_push(list1, test8);
+    mu_assert(List_last(list1) == test8, "Wrong last value.");
+
+    List_push(list1, test9);
+    mu_assert(List_last(list1) == test9, "Wrong last value.");
+
+    mu_assert(List_count(list1) == 9, "Wrong count on push.");
+
+    return NULL;
+}
+
+char *split_push_odd_result()
+{
+    List_push(list2, test1);
+    mu_assert(List_last(list2) == test1, "Wrong first value.");
+
+    List_push(list2, test2);
+    mu_assert(List_last(list2) == test2, "Wrong first value.");
+
+    List_push(list2, test3);
+    mu_assert(List_last(list2) == test3, "Wrong last value.");
+
+    List_push(list2, test4);
+    mu_assert(List_last(list2) == test4, "Wrong last value.");
+
+    mu_assert(List_count(list2) == 4, "Wrong count list2"); 
+
+    List_push(list3, test5);
+    mu_assert(List_last(list3) == test5, "Wrong last value.");
+
+    List_push(list3, test6);
+    mu_assert(List_last(list3) == test6, "Wrong last value.");
+
+    List_push(list3, test7);
+    mu_assert(List_last(list3) == test7, "Wrong last value.");
+    
+    List_push(list3, test8);
+    mu_assert(List_last(list3) == test8, "Wrong last value.");
+
+    List_push(list3, test9);
+    mu_assert(List_last(list3) == test9, "Wrong last value.");
+    
+    mu_assert(List_count(list3) == 5, "Wrong count list3"); 
+
+    return NULL;
+}
+
+char *split_list_odd()
+{
+    // ** Pre Tests ** 
+    mu_assert(List_count(list1) >= 1, "List needs more than one value to split");
+   
+    // ** Main Function **
+    //List_split(list1, list2, list3);
+    
+    //** Post Test ** 
+    mu_assert((List_count(list1)/2) == List_count(list2),\
+            "Wrong count in first split list");
+    mu_assert(List_count(list1) == List_count(list2) + List_count(list3),\
+            "Wrong count in total split list count");
+
+    // Check for values of list1 vs list2, list3
+    mark = list1->first;
+    
+    LIST_FOREACH(list2, first, next, cur){
+        mu_assert(cur->value == mark->value, "Split list2 value error");
+        mark = mark->next; // iterate list3
+    }
+    
+    LIST_FORNEXT(list3, first, next, cur){
+        mu_assert(cur->value == mark->value, "Split list3 value error");
+        mark = mark->next; // iterate list3
+    }
+
+    return NULL;
+}
+        
+
+
+
 
 char *all_tests()
 {
@@ -326,10 +444,24 @@ char *all_tests()
     mu_run_test(merge_create); // Creates list1, list2, list3
     mu_run_test(merge_push_1); // Adds values to list1
     mu_run_test(merge_push_2); // Adds values to list2 
-    //mu_run_test(merge_push_3); // Adds values to list3 (*check tests only*) 
+    //mu_run_test(merge_push_3); // list3 (*check tests only*)
     mu_run_test(merge_list); // Merges list1 & list2 into list3
     mu_run_test(merge_destroy); // Destroys list1, list2, list3
-   
+    
+    // Test Split - odd
+    mu_run_test(split_create); // Creates list1, list2, list3
+    mu_run_test(split_push_odd); // Adds start values to list1
+    mu_run_test(split_push_odd_result); // list2, list3 (*check tests only*)
+    mu_run_test(split_list_odd); // Splits list1 into list2 and list3
+    //mu_run_test(split_destroy); // Destroys list1, list2, list3
+
+    //Test Split - even
+    //mu_run_test(split_create); // Creates list1, list2, list3
+    //mu_run_test(split_push_even); // Adds start values to list1
+    //mu_run_test(split_push_even_result); // Adds result values list2, list3
+    //mu_run_test(split_list_even); // Splits list1 into list2 and list3
+    //mu_run_test(split_destroy); // Destroys list1, list2, list3
+
 
     return NULL;
 }

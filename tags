@@ -76,7 +76,7 @@ list_copy	tests/list_tests.c	/^static List *list_copy = NULL;$/;"	v	typeref:type
 log_err	src/lcthw/dbg.h	/^#define log_err(/;"	d
 log_info	src/lcthw/dbg.h	/^#define log_info(/;"	d
 log_warn	src/lcthw/dbg.h	/^#define log_warn(/;"	d
-mark3	tests/list_tests.c	/^static ListNode *mark3 = NULL;$/;"	v	typeref:typename:ListNode *	file:
+mark	tests/list_tests.c	/^static ListNode *mark = NULL;$/;"	v	typeref:typename:ListNode *	file:
 merge_create	tests/list_tests.c	/^char *merge_create()$/;"	f	typeref:typename:char *
 merge_destroy	tests/list_tests.c	/^char *merge_destroy()$/;"	f	typeref:typename:char *
 merge_list	tests/list_tests.c	/^char *merge_list()$/;"	f	typeref:typename:char *
@@ -90,6 +90,10 @@ next	src/lcthw/list.h	/^    struct ListNode *next;$/;"	m	struct:ListNode	typeref
 prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
 sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
+split_create	tests/list_tests.c	/^char *split_create()$/;"	f	typeref:typename:char *
+split_list_odd	tests/list_tests.c	/^char *split_list_odd()$/;"	f	typeref:typename:char *
+split_push_odd	tests/list_tests.c	/^char *split_push_odd()$/;"	f	typeref:typename:char *
+split_push_odd_result	tests/list_tests.c	/^char *split_push_odd_result()$/;"	f	typeref:typename:char *
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
 test2	tests/list_tests.c	/^char *test2 = "test2 data";$/;"	v	typeref:typename:char *
 test3	tests/list_tests.c	/^char *test3 = "test3 data";$/;"	v	typeref:typename:char *
