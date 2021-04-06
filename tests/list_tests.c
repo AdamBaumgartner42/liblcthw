@@ -493,6 +493,121 @@ char *split_push_even_result()
 }
 
 
+char *reverse_create()
+{
+    list1 = List_create();
+    mu_assert(list1 != NULL, "Failed to create list.");
+    
+    list2 = List_create();
+    mu_assert(list2 != NULL, "Failed to create list.");
+
+    return NULL;
+}
+
+
+char *reverse_push()
+{
+    List_push(list1, test1);
+    mu_assert(List_last(list1) == test1, "Wrong first value.");
+
+    List_push(list1, test2);
+    mu_assert(List_last(list1) == test2, "Wrong first value.");
+
+    List_push(list1, test3);
+    mu_assert(List_last(list1) == test3, "Wrong last value.");
+
+    List_push(list1, test4);
+    mu_assert(List_last(list1) == test4, "Wrong last value.");
+
+    List_push(list1, test5);
+    mu_assert(List_last(list1) == test5, "Wrong last value.");
+
+    List_push(list1, test6);
+    mu_assert(List_last(list1) == test6, "Wrong last value.");
+
+    List_push(list1, test7);
+    mu_assert(List_last(list1) == test7, "Wrong last value.");
+    
+    List_push(list1, test8);
+    mu_assert(List_last(list1) == test8, "Wrong last value.");
+
+    List_push(list1, test9);
+    mu_assert(List_last(list1) == test9, "Wrong last value.");
+
+
+    mu_assert(List_count(list1) == 9, "Wrong count list3"); 
+
+    return NULL;
+}
+
+
+char *reverse_push_result()
+{
+    List_push(list2, test9);
+    mu_assert(List_last(list2) == test9, "Wrong first value.");
+
+    List_push(list2, test8);
+    mu_assert(List_last(list2) == test8, "Wrong first value.");
+
+    List_push(list2, test7);
+    mu_assert(List_last(list2) == test7, "Wrong last value.");
+
+    List_push(list2, test6);
+    mu_assert(List_last(list2) == test6, "Wrong last value.");
+
+    List_push(list2, test5);
+    mu_assert(List_last(list2) == test5, "Wrong last value.");
+
+    List_push(list2, test4);
+    mu_assert(List_last(list2) == test4, "Wrong last value.");
+
+    List_push(list2, test3);
+    mu_assert(List_last(list2) == test3, "Wrong last value.");
+    
+    List_push(list2, test2);
+    mu_assert(List_last(list2) == test2, "Wrong last value.");
+
+    List_push(list2, test1);
+    mu_assert(List_last(list2) == test1, "Wrong last value.");
+
+    mu_assert(List_count(list2) == 9, "Wrong count reverse list2"); 
+
+    return NULL;
+}
+
+
+
+char *reverse_list()
+{
+    // ** Pre Tests ** 
+    mu_assert(list1 != NULL, "Missing list to reverse");
+   
+    // ** Main Function **
+    //List_reverse(list1, list2);
+    
+    //** Post Test ** 
+    mu_assert(List_count(list1) == List_count(list2), "Wrong count in first split list");
+
+    // Check for values of list1 vs list2, list3
+    mark = list1->first;
+    
+    LIST_FOREACH(list2, last, prev, cur){
+        mu_assert(cur->value == mark->value, "Reverse list2 value error");
+        mark = mark->next; // iterate list1
+    }
+    
+    return NULL;
+}
+
+
+char *reverse_destroy()
+{
+    List_destroy(list1);
+    List_destroy(list2);
+
+    return NULL;
+}
+
 
 char *all_tests()
 {
@@ -534,6 +649,14 @@ char *all_tests()
     //mu_run_test(split_push_even_result); // list2, list3 (*check tests only*)
     mu_run_test(split_list); // Splits list1 into list2 and list3
     mu_run_test(split_destroy); // Destroys list1, list2, list3
+    
+    //Test Reverse
+    mu_run_test(reverse_create);
+    mu_run_test(reverse_push);
+    mu_run_test(reverse_push_result); // (*check tests only*)
+    mu_run_test(reverse_list);
+    mu_run_test(reverse_destroy);
+
 
     return NULL;
 }

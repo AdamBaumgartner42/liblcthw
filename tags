@@ -90,6 +90,11 @@ mu_suite_start	tests/minunit.h	/^#define mu_suite_start(/;"	d
 next	src/lcthw/list.h	/^    struct ListNode *next;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
+reverse_create	tests/list_tests.c	/^char *reverse_create()$/;"	f	typeref:typename:char *
+reverse_destroy	tests/list_tests.c	/^char *reverse_destroy()$/;"	f	typeref:typename:char *
+reverse_list	tests/list_tests.c	/^char *reverse_list()$/;"	f	typeref:typename:char *
+reverse_push	tests/list_tests.c	/^char *reverse_push()$/;"	f	typeref:typename:char *
+reverse_push_result	tests/list_tests.c	/^char *reverse_push_result()$/;"	f	typeref:typename:char *
 sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
 split_create	tests/list_tests.c	/^char *split_create()$/;"	f	typeref:typename:char *
 split_destroy	tests/list_tests.c	/^char *split_destroy()$/;"	f	typeref:typename:char *
