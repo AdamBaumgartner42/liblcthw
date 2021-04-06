@@ -387,7 +387,7 @@ char *split_push_odd_result()
     return NULL;
 }
 
-char *split_list_odd()
+char *split_list()
 {
     // ** Pre Tests ** 
     mu_assert(List_count(list1) >= 1, "List needs more than one value to split");
@@ -427,6 +427,72 @@ char *split_destroy()
 }
 
 
+char *split_push_even()
+{
+    List_push(list1, test1);
+    mu_assert(List_last(list1) == test1, "Wrong first value.");
+
+    List_push(list1, test2);
+    mu_assert(List_last(list1) == test2, "Wrong first value.");
+
+    List_push(list1, test3);
+    mu_assert(List_last(list1) == test3, "Wrong last value.");
+
+    List_push(list1, test4);
+    mu_assert(List_last(list1) == test4, "Wrong last value.");
+
+    List_push(list1, test5);
+    mu_assert(List_last(list1) == test5, "Wrong last value.");
+
+    List_push(list1, test6);
+    mu_assert(List_last(list1) == test6, "Wrong last value.");
+
+    List_push(list1, test7);
+    mu_assert(List_last(list1) == test7, "Wrong last value.");
+    
+    List_push(list1, test8);
+    mu_assert(List_last(list1) == test8, "Wrong last value.");
+
+    mu_assert(List_count(list1) == 8, "Wrong count on push.");
+
+    return NULL;
+}
+
+
+char *split_push_even_result()
+{
+    List_push(list2, test1);
+    mu_assert(List_last(list2) == test1, "Wrong first value.");
+
+    List_push(list2, test2);
+    mu_assert(List_last(list2) == test2, "Wrong first value.");
+
+    List_push(list2, test3);
+    mu_assert(List_last(list2) == test3, "Wrong last value.");
+
+    List_push(list2, test4);
+    mu_assert(List_last(list2) == test4, "Wrong last value.");
+
+    mu_assert(List_count(list2) == 4, "Wrong count list2"); 
+
+    List_push(list3, test5);
+    mu_assert(List_last(list3) == test5, "Wrong last value.");
+
+    List_push(list3, test6);
+    mu_assert(List_last(list3) == test6, "Wrong last value.");
+
+    List_push(list3, test7);
+    mu_assert(List_last(list3) == test7, "Wrong last value.");
+    
+    List_push(list3, test8);
+    mu_assert(List_last(list3) == test8, "Wrong last value.");
+
+    mu_assert(List_count(list3) == 4, "Wrong count list3"); 
+
+    return NULL;
+}
+
+
 
 char *all_tests()
 {
@@ -459,16 +525,15 @@ char *all_tests()
     mu_run_test(split_create); // Creates list1, list2, list3
     mu_run_test(split_push_odd); // Adds start values to list1
     //mu_run_test(split_push_odd_result); // list2, list3 (*check tests only*)
-    mu_run_test(split_list_odd); // Splits list1 into list2 and list3
+    mu_run_test(split_list); // Splits list1 into list2 and list3
     mu_run_test(split_destroy); // Destroys list1, list2, list3
 
     //Test Split - even
-    //mu_run_test(split_create); // Creates list1, list2, list3
-    //mu_run_test(split_push_even); // Adds start values to list1
-    //mu_run_test(split_push_even_result); // Adds result values list2, list3
-    //mu_run_test(split_list_even); // Splits list1 into list2 and list3
-    //mu_run_test(split_destroy); // Destroys list1, list2, list3
-
+    mu_run_test(split_create); // Creates list1, list2, list3
+    mu_run_test(split_push_even); // Adds start values to list1
+    //mu_run_test(split_push_even_result); // list2, list3 (*check tests only*)
+    mu_run_test(split_list); // Splits list1 into list2 and list3
+    mu_run_test(split_destroy); // Destroys list1, list2, list3
 
     return NULL;
 }

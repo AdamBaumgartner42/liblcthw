@@ -29,6 +29,7 @@ List_count	src/lcthw/list.h	/^#define List_count(/;"	d
 List_create	src/list.c	/^List *List_create()$/;"	f	typeref:typename:List *
 List_destroy	src/list.c	/^void List_destroy(List * list)$/;"	f	typeref:typename:void
 List_first	src/lcthw/list.h	/^#define List_first(/;"	d
+List_half_split	src/list.c	/^void List_half_split(List *total, List *listA, List *listB)$/;"	f	typeref:typename:void
 List_insert_after	src/list.c	/^void List_insert_after(List *list, ListNode *node, void *value)$/;"	f	typeref:typename:void
 List_last	src/lcthw/list.h	/^#define List_last(/;"	d
 List_merge	src/list.c	/^void List_merge(List *listA, List *listB, List *target)$/;"	f	typeref:typename:void
@@ -91,7 +92,10 @@ prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref
 print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
 sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
 split_create	tests/list_tests.c	/^char *split_create()$/;"	f	typeref:typename:char *
-split_list_odd	tests/list_tests.c	/^char *split_list_odd()$/;"	f	typeref:typename:char *
+split_destroy	tests/list_tests.c	/^char *split_destroy()$/;"	f	typeref:typename:char *
+split_list	tests/list_tests.c	/^char *split_list()$/;"	f	typeref:typename:char *
+split_push_even	tests/list_tests.c	/^char *split_push_even()$/;"	f	typeref:typename:char *
+split_push_even_result	tests/list_tests.c	/^char *split_push_even_result()$/;"	f	typeref:typename:char *
 split_push_odd	tests/list_tests.c	/^char *split_push_odd()$/;"	f	typeref:typename:char *
 split_push_odd_result	tests/list_tests.c	/^char *split_push_odd_result()$/;"	f	typeref:typename:char *
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
