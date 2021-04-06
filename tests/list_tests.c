@@ -581,12 +581,12 @@ char *reverse_list()
 {
     // ** Pre Tests ** 
     mu_assert(list1 != NULL, "Missing list to reverse");
-   
+    
     // ** Main Function **
-    //List_reverse(list1, list2);
+    List_reverse(list1, list2);
     
     //** Post Test ** 
-    mu_assert(List_count(list1) == List_count(list2), "Wrong count in first split list");
+    mu_assert(List_count(list1) == List_count(list2), "Wrong count in reverse_list");
 
     // Check for values of list1 vs list2, list3
     mark = list1->first;
@@ -653,7 +653,7 @@ char *all_tests()
     //Test Reverse
     mu_run_test(reverse_create);
     mu_run_test(reverse_push);
-    mu_run_test(reverse_push_result); // (*check tests only*)
+    //mu_run_test(reverse_push_result); // (*check tests only*)
     mu_run_test(reverse_list);
     mu_run_test(reverse_destroy);
 

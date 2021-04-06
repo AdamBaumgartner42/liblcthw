@@ -213,3 +213,19 @@ error:
 }
 
 
+void List_reverse(List *init, List *reverse)
+{
+    check(init != NULL, "init must be initialized");
+    check(reverse != NULL, "reverse must be initialized");
+   
+    // Read out init in reverse order -> to reverse list
+    LIST_FOREACH(init, last, prev, cur){ // values read in reverse order
+        List_push(reverse, cur->value); // add value to reverse
+    }
+
+error:
+    return;
+
+}
+
+

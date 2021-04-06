@@ -36,6 +36,7 @@ void print_List(List * list);
 void List_copy(List * list, List * list_copy);
 void List_merge(List *listA, List *listB, List *target); 
 void List_half_split(List *target, List *listA, List *listB);
+void List_reverse(List *init, List *reverse);
 
 #define LIST_FOREACH(L, S, M, V)\
 ListNode *_node = NULL;\
