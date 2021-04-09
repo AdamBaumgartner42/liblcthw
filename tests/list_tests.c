@@ -169,7 +169,7 @@ char *copy_destroy()
     return NULL;
 }
 
-char *merge_create()
+char *join_create()
 {
     list1 = List_create();
     mu_assert(list1 != NULL, "Failed to create list.");
@@ -183,7 +183,7 @@ char *merge_create()
     return NULL;
 }
 
-char *merge_push_1()
+char *join_push_1()
 {
     List_push(list1, test1);
     mu_assert(List_last(list1) == test1, "Wrong first value.");
@@ -199,7 +199,7 @@ char *merge_push_1()
     return NULL;
 }
 
-char *merge_push_2()
+char *join_push_2()
 {
     List_push(list2, test4);
     mu_assert(List_last(list2) == test4, "Wrong last value.");
@@ -224,7 +224,7 @@ char *merge_push_2()
     return NULL;
 }
 
-char *merge_push_3()
+char *join_push_3()
 {
     List_push(list3, test1);
     mu_assert(List_last(list3) == test1, "Wrong first value.");
@@ -259,7 +259,7 @@ char *merge_push_3()
 }
 
 
-char *merge_list()
+char *join_list()
 {
     // *** Init check ***
     mu_assert(List_count(list1) >= 2, "Merge list must be >2");
@@ -267,24 +267,24 @@ char *merge_list()
     mu_assert(list3 != NULL, "Merge target must != NULL");
     
     // *** List Merge ***
-    List_merge(list1, list2, list3); 
+    List_join(list1, list2, list3); 
 
     // *** Post check ***
     // Check list3->count = list1->count + list2->count
     mu_assert(List_count(list3) == List_count(list1) + List_count(list2),\
-            "Wrong list3 count on merge.");
+            "Wrong list3 count on join.");
 
-    // Set mark to start of merged list
+    // Set mark to start of joined list
     mark = list3->first;
     
-    // Compare merged list to values of first list
+    // Compare joind list to values of first list
     LIST_FOREACH(list1, first, next, cur){
         //printf("list1:%s, list3:%s\n", cur->value, mark->value);
         mu_assert(cur->value == mark->value, "Merged list value error");
         mark = mark->next; // iterate list3
     }
     
-    // Compare merged list to values of second list
+    // Compare joind list to values of second list
     LIST_FORNEXT(list2, first, next, cur){
         //printf("list2:%s, list3:%s\n", cur->value, mark->value);
         mu_assert(cur->value == mark->value, "Merged list value error");
@@ -294,7 +294,7 @@ char *merge_list()
     return NULL;
 }
 
-char *merge_destroy()
+char *join_destroy()
 {
     List_destroy(list1);
     List_destroy(list2);
@@ -629,12 +629,12 @@ char *all_tests()
     mu_run_test(copy_destroy);    
     
     // Test Merge
-    mu_run_test(merge_create); // Creates list1, list2, list3
-    mu_run_test(merge_push_1); // Adds values to list1
-    mu_run_test(merge_push_2); // Adds values to list2 
-    //mu_run_test(merge_push_3); // list3 (*check tests only*)
-    mu_run_test(merge_list); // Merges list1 & list2 into list3
-    mu_run_test(merge_destroy); // Destroys list1, list2, list3
+    mu_run_test(join_create); // Creates list1, list2, list3
+    mu_run_test(join_push_1); // Adds values to list1
+    mu_run_test(join_push_2); // Adds values to list2 
+    //mu_run_test(join_push_3); // list3 (*check tests only*)
+    mu_run_test(join_list); // Merges list1 & list2 into list3
+    mu_run_test(join_destroy); // Destroys list1, list2, list3
     
     // Test Split - odd
     mu_run_test(split_create); // Creates list1, list2, list3

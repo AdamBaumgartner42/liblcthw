@@ -168,7 +168,7 @@ error:
 }
 
 
-void List_merge(List *listA, List *listB, List *target)
+void List_join(List *listA, List *listB, List *target)
 {
     check(listA != NULL, "Invalid list input");
     check(listB != NULL, "Invalid list input");
