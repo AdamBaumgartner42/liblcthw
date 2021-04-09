@@ -14,6 +14,7 @@ $(TARGET)	Makefile	/^$(TARGET): CFLAGS +=-fPIC$/;"	t
 $(TARGET)	Makefile	/^$(TARGET): build $(OBJECTS)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
+Array_bubble_sort	src/array_algos.c	/^int *Array_bubble_sort(int *numbers, int count, compare_cb cmp)$/;"	f	typeref:typename:int *
 CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
 CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	m
 LIBS	Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m
@@ -24,6 +25,9 @@ List	src/lcthw/list.h	/^typedef struct List { $/;"	s
 List	src/lcthw/list.h	/^} List;$/;"	t	typeref:struct:List
 ListNode	src/lcthw/list.h	/^typedef struct ListNode {$/;"	s
 ListNode	src/lcthw/list.h	/^} ListNode;$/;"	t	typeref:struct:ListNode
+ListNode_swap	src/list_algos.c	/^inline void ListNode_swap(ListNode * a, ListNode * b)$/;"	f	typeref:typename:void
+List_bubble_sort	src/list_algos.c	/^int List_bubble_sort(List * list, List_compare cmp)$/;"	f	typeref:typename:int
+List_compare	src/lcthw/list_algos.h	/^typedef int (*List_compare) (const void *a, const void *b);$/;"	t	typeref:typename:int (*)(const void * a,const void * b)
 List_copy	src/list.c	/^void List_copy(List *list , List *list_copy)$/;"	f	typeref:typename:void
 List_count	src/lcthw/list.h	/^#define List_count(/;"	d
 List_create	src/list.c	/^List *List_create()$/;"	f	typeref:typename:List *
@@ -31,14 +35,17 @@ List_destroy	src/list.c	/^void List_destroy(List * list)$/;"	f	typeref:typename:
 List_first	src/lcthw/list.h	/^#define List_first(/;"	d
 List_half_split	src/list.c	/^void List_half_split(List *total, List *listA, List *listB)$/;"	f	typeref:typename:void
 List_insert_after	src/list.c	/^void List_insert_after(List *list, ListNode *node, void *value)$/;"	f	typeref:typename:void
+List_join	src/list.c	/^void List_join(List *listA, List *listB, List *target)$/;"	f	typeref:typename:void
 List_last	src/lcthw/list.h	/^#define List_last(/;"	d
-List_merge	src/list.c	/^void List_merge(List *listA, List *listB, List *target)$/;"	f	typeref:typename:void
+List_merge	src/list_algos.c	/^inline List *List_merge(List * left, List * right, List_compare cmp)$/;"	f	typeref:typename:List *
+List_merge_sort	src/list_algos.c	/^List *List_merge_sort(List * list, List_compare cmp)$/;"	f	typeref:typename:List *
 List_pop	src/list.c	/^void *List_pop(List * list)$/;"	f	typeref:typename:void *
 List_push	src/list.c	/^void List_push(List * list, void *value)$/;"	f	typeref:typename:void
 List_remove	src/list.c	/^void *List_remove(List * list, ListNode * node)$/;"	f	typeref:typename:void *
 List_reverse	src/list.c	/^void List_reverse(List *init, List *reverse)$/;"	f	typeref:typename:void
 List_shift	src/list.c	/^void *List_shift(List * list)$/;"	f	typeref:typename:void *
 List_unshift	src/list.c	/^void List_unshift(List * list, void *value)$/;"	f	typeref:typename:void
+NUM_VALUES	tests/list_algos_tests.c	/^#define NUM_VALUES /;"	d	file:
 OBJECTS	Makefile	/^OBJECTS=$(patsubst %.c,%.o,$(SOURCES))$/;"	m
 PREFIX	Makefile	/^PREFIX?=\/usr\/local$/;"	m
 RUN_TESTS	tests/minunit.h	/^#define RUN_TESTS(/;"	d
@@ -51,6 +58,8 @@ UNAME	Makefile	/^UNAME=$(shell uname)$/;"	m
 __dbg_h__	src/lcthw/dbg.h	/^#define __dbg_h__$/;"	d
 _minunit_h	tests/minunit.h	/^#define _minunit_h$/;"	d
 all	Makefile	/^all: $(TARGET) $(SO_TARGET) tests$/;"	t
+all_tests	tests/array_algos_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
+all_tests	tests/list_algos_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
 all_tests	tests/list_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
 build	Makefile	/^build:$/;"	t
 check	Makefile	/^check:$/;"	t
@@ -59,17 +68,29 @@ check_debug	src/lcthw/dbg.h	/^#define check_debug(/;"	d
 check_mem	src/lcthw/dbg.h	/^#define check_mem(/;"	d
 clean	Makefile	/^clean:$/;"	t
 clean_errno	src/lcthw/dbg.h	/^#define clean_errno(/;"	d
+compare_cb	src/lcthw/array_algos.h	/^typedef int (*compare_cb) (int a, int b);$/;"	t	typeref:typename:int (*)(int a,int b)
 copy_create	tests/list_tests.c	/^char *copy_create()$/;"	f	typeref:typename:char *
 copy_destroy	tests/list_tests.c	/^char *copy_destroy()$/;"	f	typeref:typename:char *
 copy_list	tests/list_tests.c	/^char *copy_list()$/;"	f	typeref:typename:char *
 count	src/lcthw/list.h	/^    int count; $/;"	m	struct:List	typeref:typename:int
+count	tests/array_algos_tests.c	/^int count = sizeof(sorted_array)\/sizeof(int);$/;"	v	typeref:typename:int
+create_words	tests/list_algos_tests.c	/^List *create_words()$/;"	f	typeref:typename:List *
 debug	src/lcthw/dbg.h	/^#define debug(/;"	d
 dev	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	t
 dev	Makefile	/^dev: all$/;"	t
 first	src/lcthw/list.h	/^    ListNode *first;$/;"	m	struct:List	typeref:typename:ListNode *
 install	Makefile	/^install: all$/;"	t
+is_sorted	tests/list_algos_tests.c	/^int is_sorted(List *words)$/;"	f	typeref:typename:int
+join_create	tests/list_tests.c	/^char *join_create()$/;"	f	typeref:typename:char *
+join_destroy	tests/list_tests.c	/^char *join_destroy()$/;"	f	typeref:typename:char *
+join_list	tests/list_tests.c	/^char *join_list()$/;"	f	typeref:typename:char *
+join_push_1	tests/list_tests.c	/^char *join_push_1()$/;"	f	typeref:typename:char *
+join_push_2	tests/list_tests.c	/^char *join_push_2()$/;"	f	typeref:typename:char *
+join_push_3	tests/list_tests.c	/^char *join_push_3()$/;"	f	typeref:typename:char *
 last	src/lcthw/list.h	/^    ListNode *last;$/;"	m	struct:List	typeref:typename:ListNode *
+lcthw_List_algos_h	src/lcthw/list_algos.h	/^#define lcthw_List_algos_h$/;"	d
 lcthw_List_h	src/lcthw/list.h	/^#define lcthw_List_h$/;"	d
+lcthw_array_algos_h	src/lcthw/array_algos.h	/^#define lcthw_array_algos_h$/;"	d
 list	tests/list_tests.c	/^static List *list = NULL;$/;"	v	typeref:typename:List *	file:
 list1	tests/list_tests.c	/^static List *list1 = NULL;$/;"	v	typeref:typename:List *	file:
 list2	tests/list_tests.c	/^static List *list2 = NULL;$/;"	v	typeref:typename:List *	file:
@@ -79,24 +100,22 @@ log_err	src/lcthw/dbg.h	/^#define log_err(/;"	d
 log_info	src/lcthw/dbg.h	/^#define log_info(/;"	d
 log_warn	src/lcthw/dbg.h	/^#define log_warn(/;"	d
 mark	tests/list_tests.c	/^static ListNode *mark = NULL;$/;"	v	typeref:typename:ListNode *	file:
-merge_create	tests/list_tests.c	/^char *merge_create()$/;"	f	typeref:typename:char *
-merge_destroy	tests/list_tests.c	/^char *merge_destroy()$/;"	f	typeref:typename:char *
-merge_list	tests/list_tests.c	/^char *merge_list()$/;"	f	typeref:typename:char *
-merge_push_1	tests/list_tests.c	/^char *merge_push_1()$/;"	f	typeref:typename:char *
-merge_push_2	tests/list_tests.c	/^char *merge_push_2()$/;"	f	typeref:typename:char *
-merge_push_3	tests/list_tests.c	/^char *merge_push_3()$/;"	f	typeref:typename:char *
 mu_assert	tests/minunit.h	/^#define mu_assert(/;"	d
 mu_run_test	tests/minunit.h	/^#define mu_run_test(/;"	d
 mu_suite_start	tests/minunit.h	/^#define mu_suite_start(/;"	d
 next	src/lcthw/list.h	/^    struct ListNode *next;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
+print_array	tests/array_algos_tests.c	/^void print_array(int *array)$/;"	f	typeref:typename:void
+random_array	tests/array_algos_tests.c	/^int random_array[] = { 3, 7, 5, 8, 1, 4};$/;"	v	typeref:typename:int[]
 reverse_create	tests/list_tests.c	/^char *reverse_create()$/;"	f	typeref:typename:char *
 reverse_destroy	tests/list_tests.c	/^char *reverse_destroy()$/;"	f	typeref:typename:char *
 reverse_list	tests/list_tests.c	/^char *reverse_list()$/;"	f	typeref:typename:char *
 reverse_push	tests/list_tests.c	/^char *reverse_push()$/;"	f	typeref:typename:char *
 reverse_push_result	tests/list_tests.c	/^char *reverse_push_result()$/;"	f	typeref:typename:char *
 sentinel	src/lcthw/dbg.h	/^#define sentinel(/;"	d
+sorted_array	tests/array_algos_tests.c	/^int sorted_array[] = { 1, 2, 3, 4, 5, 6};$/;"	v	typeref:typename:int[]
+sorted_order	tests/array_algos_tests.c	/^int sorted_order(int a, int b)$/;"	f	typeref:typename:int
 split_create	tests/list_tests.c	/^char *split_create()$/;"	f	typeref:typename:char *
 split_destroy	tests/list_tests.c	/^char *split_destroy()$/;"	f	typeref:typename:char *
 split_list	tests/list_tests.c	/^char *split_list()$/;"	f	typeref:typename:char *
@@ -113,9 +132,12 @@ test6	tests/list_tests.c	/^char *test6 = "test6 data";$/;"	v	typeref:typename:ch
 test7	tests/list_tests.c	/^char *test7 = "test7 data";$/;"	v	typeref:typename:char *
 test8	tests/list_tests.c	/^char *test8 = "test8 data";$/;"	v	typeref:typename:char *
 test9	tests/list_tests.c	/^char *test9 = "test9 data";$/;"	v	typeref:typename:char *
+test_bubble_sort	tests/array_algos_tests.c	/^char *test_bubble_sort()$/;"	f	typeref:typename:char *
+test_bubble_sort	tests/list_algos_tests.c	/^char *test_bubble_sort()$/;"	f	typeref:typename:char *
 test_create	tests/list_tests.c	/^char *test_create()$/;"	f	typeref:typename:char *
 test_destroy	tests/list_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:char *
 test_insert_after	tests/list_tests.c	/^char *test_insert_after()$/;"	f	typeref:typename:char *
+test_merge_sort	tests/list_algos_tests.c	/^char *test_merge_sort()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
 test_remove	tests/list_tests.c	/^char *test_remove()$/;"	f	typeref:typename:char *
 test_shift	tests/list_tests.c	/^char *test_shift()$/;"	f	typeref:typename:char *
@@ -124,3 +146,4 @@ tests	Makefile	/^tests: $(TESTS)$/;"	t
 tests	Makefile	/^tests: CFLAGS += $(TARGET)$/;"	t
 tests_run	tests/minunit.h	/^int tests_run;$/;"	v	typeref:typename:int
 value	src/lcthw/list.h	/^    void *value; $/;"	m	struct:ListNode	typeref:typename:void *
+values	tests/list_algos_tests.c	/^char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS" };$/;"	v	typeref:typename:char * []
