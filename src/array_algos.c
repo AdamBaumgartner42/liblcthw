@@ -2,6 +2,16 @@
 #include <lcthw/dbg.h>
 #include <stdlib.h>
 
+int sorted_order(int a, int b)
+{
+    return a - b;
+}
+
+int reverse_order(int a, int b)
+{
+    return b - a;
+}
+
 int *Array_bubble_sort(int *numbers, int count, compare_cb cmp)
 {
     int temp = 0;
@@ -24,4 +34,11 @@ int *Array_bubble_sort(int *numbers, int count, compare_cb cmp)
     return target;
 }
 
+void print_array(int *array, int count)
+{
+    for(int i = 0; i < count; i++){
+        printf("%d, ", array[i]);
+    }
+    printf("\n");
+}
 

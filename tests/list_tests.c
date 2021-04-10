@@ -657,7 +657,6 @@ char *all_tests()
     mu_run_test(reverse_list);
     mu_run_test(reverse_destroy);
 
-
     return NULL;
 }
 
