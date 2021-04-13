@@ -25,8 +25,7 @@ List	src/lcthw/list.h	/^typedef struct List { $/;"	s
 List	src/lcthw/list.h	/^} List;$/;"	t	typeref:struct:List
 ListNode	src/lcthw/list.h	/^typedef struct ListNode {$/;"	s
 ListNode	src/lcthw/list.h	/^} ListNode;$/;"	t	typeref:struct:ListNode
-ListNode_swap	src/list_algos.c	/^inline void ListNode_swap(ListNode * a, ListNode * b)$/;"	f	typeref:typename:void
-List_bubble_sort	src/list_algos.c	/^int List_bubble_sort(List * list, List_compare cmp)$/;"	f	typeref:typename:int
+List_bubble_sort	src/list_algos.c	/^int List_bubble_sort(List *words, List_compare cmp)$/;"	f	typeref:typename:int
 List_compare	src/lcthw/list_algos.h	/^typedef int (*List_compare) (const char *s1, const char *s2);$/;"	t	typeref:typename:int (*)(const char * s1,const char * s2)
 List_copy	src/list.c	/^void List_copy(List *list , List *list_copy)$/;"	f	typeref:typename:void
 List_count	src/lcthw/list.h	/^#define List_count(/;"	d
@@ -37,8 +36,7 @@ List_half_split	src/list.c	/^void List_half_split(List *total, List *listA, List
 List_insert_after	src/list.c	/^void List_insert_after(List *list, ListNode *node, void *value)$/;"	f	typeref:typename:void
 List_join	src/list.c	/^void List_join(List *listA, List *listB, List *target)$/;"	f	typeref:typename:void
 List_last	src/lcthw/list.h	/^#define List_last(/;"	d
-List_merge	src/list_algos.c	/^inline List *List_merge(List * left, List * right, List_compare cmp)$/;"	f	typeref:typename:List *
-List_merge_sort	src/list_algos.c	/^List *List_merge_sort(List * list, List_compare cmp)$/;"	f	typeref:typename:List *
+List_merge_sort	src/list_algos.c	/^List *List_merge_sort(List *list, List_compare cmp)$/;"	f	typeref:typename:List *
 List_pop	src/list.c	/^void *List_pop(List * list)$/;"	f	typeref:typename:void *
 List_push	src/list.c	/^void List_push(List * list, void *value)$/;"	f	typeref:typename:void
 List_remove	src/list.c	/^void *List_remove(List * list, ListNode * node)$/;"	f	typeref:typename:void *
@@ -87,9 +85,9 @@ join_push_1	tests/list_tests.c	/^char *join_push_1()$/;"	f	typeref:typename:char
 join_push_2	tests/list_tests.c	/^char *join_push_2()$/;"	f	typeref:typename:char *
 join_push_3	tests/list_tests.c	/^char *join_push_3()$/;"	f	typeref:typename:char *
 last	src/lcthw/list.h	/^    ListNode *last;$/;"	m	struct:List	typeref:typename:ListNode *
-lcthw_List_algos_h	src/lcthw/list_algos.h	/^#define lcthw_List_algos_h$/;"	d
 lcthw_List_h	src/lcthw/list.h	/^#define lcthw_List_h$/;"	d
 lcthw_array_algos_h	src/lcthw/array_algos.h	/^#define lcthw_array_algos_h$/;"	d
+lcthw_list_algos_h	src/lcthw/list_algos.h	/^#define lcthw_list_algos_h$/;"	d
 list	tests/list_tests.c	/^static List *list = NULL;$/;"	v	typeref:typename:List *	file:
 list1	tests/list_tests.c	/^static List *list1 = NULL;$/;"	v	typeref:typename:List *	file:
 list2	tests/list_tests.c	/^static List *list2 = NULL;$/;"	v	typeref:typename:List *	file:
@@ -106,6 +104,7 @@ next	src/lcthw/list.h	/^    struct ListNode *next;$/;"	m	struct:ListNode	typeref
 prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref:struct:ListNode *
 print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
 print_array	src/array_algos.c	/^void print_array(int *array, int count)$/;"	f	typeref:typename:void
+print_cmp_log	src/list_algos.c	/^void print_cmp_log(char *s1, char *s2, int val)$/;"	f	typeref:typename:void
 random_array	tests/array_algos_tests.c	/^int random_array[] = { 3, 7, 5, 8, 1, 4};$/;"	v	typeref:typename:int[]
 reverse_create	tests/list_tests.c	/^char *reverse_create()$/;"	f	typeref:typename:char *
 reverse_destroy	tests/list_tests.c	/^char *reverse_destroy()$/;"	f	typeref:typename:char *
@@ -122,6 +121,7 @@ split_push_even	tests/list_tests.c	/^char *split_push_even()$/;"	f	typeref:typen
 split_push_even_result	tests/list_tests.c	/^char *split_push_even_result()$/;"	f	typeref:typename:char *
 split_push_odd	tests/list_tests.c	/^char *split_push_odd()$/;"	f	typeref:typename:char *
 split_push_odd_result	tests/list_tests.c	/^char *split_push_odd_result()$/;"	f	typeref:typename:char *
+swapListNode	src/list_algos.c	/^int swapListNode(List *list, ListNode *cur, ListNode *next)$/;"	f	typeref:typename:int
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
 test2	tests/list_tests.c	/^char *test2 = "test2 data";$/;"	v	typeref:typename:char *
 test3	tests/list_tests.c	/^char *test3 = "test3 data";$/;"	v	typeref:typename:char *

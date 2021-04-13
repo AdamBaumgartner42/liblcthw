@@ -144,16 +144,9 @@ error:
 
 void print_List(List *list)
 {
-    printf("***print_List_***\n");
-    printf("List_count: %d\n", List_count(list));
-    printf("ptr | string | int\n");
     LIST_FOREACH(list, first, next, cur) { 
-        printf("%p ,", cur->value);
         printf("%s ,", (char *) cur->value);
-        //printf("%d ,", (int) cur->value);
-        printf("\n");
     }
-    printf("\n");
     printf("\n");
 }
 

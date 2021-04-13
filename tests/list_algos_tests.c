@@ -4,6 +4,7 @@
 #include <string.h>
 
 char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS" };
+//char *values[] = { "1234"};
 
 #define NUM_VALUES 5
 
@@ -23,8 +24,8 @@ int is_sorted(List * words)
 {
     LIST_FOREACH(words, first, next, cur) {
         if (cur->next && strcmp(cur->value, cur->next->value) > 0) {
-            debug("%s %s", (char *)cur->value,
-                    (char *)cur->next->value);
+            printf("%s %s\n", (char *)cur->value,\
+                (char *)cur->next->value);
             return 0;
         }
     }
@@ -39,12 +40,13 @@ char *test_bubble_sort()
     // should work on a list that needs sorting
     int rc = List_bubble_sort(words, (List_compare) strcmp);
     mu_assert(rc == 0, "Bubble sort failed 1.");
-    //mu_assert(is_sorted(words),"Bubble sort failed.");
-
+    mu_assert(is_sorted(words),"Bubble sort failed.");
+    
+   
     // should work on an already sorted list
     rc = List_bubble_sort(words, (List_compare) strcmp);
     mu_assert(rc == 0, "Bubble sort failed 2.");
-    //mu_assert(is_sorted(words), "Bubble sort failed.");
+    mu_assert(is_sorted(words), "Bubble sort failed.");
 
     List_destroy(words);
 
@@ -52,8 +54,8 @@ char *test_bubble_sort()
     words = List_create(words);
     rc = List_bubble_sort(words, (List_compare) strcmp);
     mu_assert(rc == 0, "Bubble sort failed on empty list.");
-    //mu_assert(is_sorted(words), "Words should be sorted if empty.");
-
+    mu_assert(is_sorted(words), "Words should be sorted if empty.");
+    
     List_destroy(words);
 
     return NULL;
@@ -65,7 +67,7 @@ char *test_merge_sort()
 
     // should work on a list that needs sorting
     List *res = List_merge_sort(words, (List_compare) strcmp);
-    //mu_assert(is_sorted(res), "Words are not sorted after merge sort.");
+    mu_assert(is_sorted(res), "Words are not sorted after merge sort.");
 
     List *res2 = List_merge_sort(res, (List_compare) strcmp);
     //mu_assert(is_sorted(res),"Merge sort failed.");
@@ -81,7 +83,7 @@ char *all_tests()
     mu_suite_start();
 
     mu_run_test(test_bubble_sort);
-    mu_run_test(test_merge_sort);
+    //mu_run_test(test_merge_sort);
 
     return NULL;
 }
