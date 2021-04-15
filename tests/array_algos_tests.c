@@ -25,14 +25,24 @@ int is_sorted(int *nums, int count)
 char *test_bubble_sort()
 {
     int count = sizeof(random_array)/sizeof(int);
-
     int *rc = NULL; 
-    rc = random_array;
+    rc = Bubble_sort(random_array, count, (compare_cb) sorted_order);
+    mu_assert(rc != NULL, "Error with Bubble_sort()"); 
+    mu_assert(is_sorted(rc, count),"Bubble_sort() array is not in order");
+     
+    return NULL;
+}
 
-    rc = NULL; // reset
-    rc = Array_bubble_sort(random_array, count, (compare_cb) sorted_order);
-    mu_assert(rc != NULL, "Error with sorted_order"); 
-    mu_assert(is_sorted(rc, count),"List is not in order");
+char *test_merge_sort()
+{
+    int arr[] = { 3, 7, 5, 8, 1, 4};
+    int arr_size = sizeof(arr)/sizeof(int);
+
+    mu_assert(is_sorted(arr, arr_size) == 0, "arr[] is already sorted");
+
+    mergeSort(arr, 0, arr_size - 1);
+
+    mu_assert(is_sorted(arr, arr_size),"arr[] is not in order");
      
     return NULL;
 }
@@ -42,6 +52,7 @@ char *all_tests()
 {
     mu_suite_start();
     mu_run_test(test_bubble_sort);
+    //mu_run_test(test_merge_sort);
 
     return NULL;
 }

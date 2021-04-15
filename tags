@@ -14,7 +14,7 @@ $(TARGET)	Makefile	/^$(TARGET): CFLAGS +=-fPIC$/;"	t
 $(TARGET)	Makefile	/^$(TARGET): build $(OBJECTS)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
-Array_bubble_sort	src/array_algos.c	/^int *Array_bubble_sort(int *numbers, int count, compare_cb cmp)$/;"	f	typeref:typename:int *
+Bubble_sort	src/array_algos.c	/^int *Bubble_sort(int *numbers, int count, compare_cb cmp)$/;"	f	typeref:typename:int *
 CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
 CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	m
 LIBS	Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m
@@ -98,6 +98,8 @@ log_err	src/lcthw/dbg.h	/^#define log_err(/;"	d
 log_info	src/lcthw/dbg.h	/^#define log_info(/;"	d
 log_warn	src/lcthw/dbg.h	/^#define log_warn(/;"	d
 mark	tests/list_tests.c	/^static ListNode *mark = NULL;$/;"	v	typeref:typename:ListNode *	file:
+merge	src/array_algos.c	/^void merge(int arr[], int l, int m, int r)$/;"	f	typeref:typename:void
+mergeSort	src/array_algos.c	/^void mergeSort(int arr[], int l, int r)$/;"	f	typeref:typename:void
 mu_assert	tests/minunit.h	/^#define mu_assert(/;"	d
 mu_run_test	tests/minunit.h	/^#define mu_run_test(/;"	d
 mu_suite_start	tests/minunit.h	/^#define mu_suite_start(/;"	d
@@ -137,6 +139,7 @@ test_bubble_sort	tests/list_algos_tests.c	/^char *test_bubble_sort()$/;"	f	typer
 test_create	tests/list_tests.c	/^char *test_create()$/;"	f	typeref:typename:char *
 test_destroy	tests/list_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:char *
 test_insert_after	tests/list_tests.c	/^char *test_insert_after()$/;"	f	typeref:typename:char *
+test_merge_sort	tests/array_algos_tests.c	/^char *test_merge_sort()$/;"	f	typeref:typename:char *
 test_merge_sort	tests/list_algos_tests.c	/^char *test_merge_sort()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
 test_remove	tests/list_tests.c	/^char *test_remove()$/;"	f	typeref:typename:char *

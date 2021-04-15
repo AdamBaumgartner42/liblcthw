@@ -3,11 +3,11 @@
 
 typedef int (*compare_cb) (int a, int b);
 
-//int sorted_order(int a, int b);
 int sorted_order(int a, int b);
 int reverse_order(int a, int b);
 
-int *Array_bubble_sort(int *numbers, int count, compare_cb cmp);
+int *Bubble_sort(int *numbers, int count, compare_cb cmp);
+void mergeSort(int arr[], int l, int r);
 void print_array(int *array, int count);
 
 #endif
