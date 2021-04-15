@@ -7,6 +7,20 @@
 // test values
 int random_array[] = { 3, 7, 5, 8, 1, 4};
 
+
+int is_sorted(int *nums, int count)
+{
+    int i = 0; 
+
+    for(i = 0; i < count; i++){
+        if(nums[i] > nums [i+1]){
+            printf("Error: i:%d [i]:%d, [i+1]:%d\n", i, nums[i], nums[i+1]);
+            return 0; 
+        }
+    }
+    return 1; 
+
+}
     
 char *test_bubble_sort()
 {
@@ -14,18 +28,12 @@ char *test_bubble_sort()
 
     int *rc = NULL; 
     rc = random_array;
-    //print_array(rc, count);
-
 
     rc = NULL; // reset
     rc = Array_bubble_sort(random_array, count, (compare_cb) sorted_order);
-    //print_array(rc, count);
     mu_assert(rc != NULL, "Error with sorted_order"); 
-    
-    //rc = NULL; // reset
-    //rc = Array_bubble_sort(random_array, count, reverse_order);
-    //mu_assert(rc != NULL, "Error with reverse_order"); 
-
+    mu_assert(is_sorted(rc, count),"List is not in order");
+     
     return NULL;
 }
 

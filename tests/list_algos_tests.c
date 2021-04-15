@@ -4,7 +4,6 @@
 #include <string.h>
 
 char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS" };
-//char *values[] = { "1234"};
 
 #define NUM_VALUES 5
 

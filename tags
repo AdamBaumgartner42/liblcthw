@@ -77,6 +77,7 @@ dev	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	t
 dev	Makefile	/^dev: all$/;"	t
 first	src/lcthw/list.h	/^    ListNode *first;$/;"	m	struct:List	typeref:typename:ListNode *
 install	Makefile	/^install: all$/;"	t
+is_sorted	tests/array_algos_tests.c	/^int is_sorted(int *nums, int count)$/;"	f	typeref:typename:int
 is_sorted	tests/list_algos_tests.c	/^int is_sorted(List * words)$/;"	f	typeref:typename:int
 join_create	tests/list_tests.c	/^char *join_create()$/;"	f	typeref:typename:char *
 join_destroy	tests/list_tests.c	/^char *join_destroy()$/;"	f	typeref:typename:char *
