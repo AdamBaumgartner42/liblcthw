@@ -15,7 +15,7 @@ $(TARGET)	Makefile	/^$(TARGET): build $(OBJECTS)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
 Bubble_sort	src/array_algos.c	/^int *Bubble_sort(int *numbers, int count, compare_cb cmp)$/;"	f	typeref:typename:int *
-CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-g -O0 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
 CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	m
 LIBS	Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m
 LIST_FORBOTH	src/lcthw/list.h	/^#define LIST_FORBOTH(/;"	d

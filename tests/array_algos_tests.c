@@ -37,11 +37,9 @@ char *test_merge_sort()
 {
     int arr[] = { 3, 7, 5, 8, 1, 4};
     int arr_size = sizeof(arr)/sizeof(int);
-
-    mu_assert(is_sorted(arr, arr_size) == 0, "arr[] is already sorted");
-
+    
     mergeSort(arr, 0, arr_size - 1);
-
+    
     mu_assert(is_sorted(arr, arr_size),"arr[] is not in order");
      
     return NULL;
@@ -52,7 +50,7 @@ char *all_tests()
 {
     mu_suite_start();
     mu_run_test(test_bubble_sort);
-    //mu_run_test(test_merge_sort);
+    mu_run_test(test_merge_sort);
 
     return NULL;
 }
