@@ -2,10 +2,10 @@ Library of Data Structures and Algorithims
 
 To run the program, just type "make".
 
-**Input:**
+Input:
 computer:~/liblcthw_ab$ make
 
-**Output:**
+Output:
 sh ./tests/runtests_book.sh
 Running unit tests:
 ----
