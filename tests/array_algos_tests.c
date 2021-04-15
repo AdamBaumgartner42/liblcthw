@@ -12,7 +12,7 @@ int is_sorted(int *nums, int count)
 {
     int i = 0; 
 
-    for(i = 0; i < count; i++){
+    for(i = 0; i < count-1; i++){
         if(nums[i] > nums [i+1]){
             printf("Error: i:%d [i]:%d, [i+1]:%d\n", i, nums[i], nums[i+1]);
             return 0; 
