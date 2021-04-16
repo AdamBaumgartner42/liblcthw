@@ -68,8 +68,9 @@ char *test_merge_sort()
     List *res = List_merge_sort(words, (List_compare) strcmp);
     mu_assert(is_sorted(res), "Words are not sorted after merge sort.");
 
+    // should work on a list that does not need sorting
     List *res2 = List_merge_sort(res, (List_compare) strcmp);
-    //mu_assert(is_sorted(res),"Merge sort failed.");
+    mu_assert(is_sorted(res),"Merge sort failed.");
     List_destroy(res2);
     List_destroy(res);
 

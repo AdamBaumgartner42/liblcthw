@@ -38,7 +38,7 @@ int *Bubble_sort(int *numbers, int count, compare_cb cmp)
 void merge(int arr[], int l, int m, int r)
 {
     int i, j, k;
-    int n1 = m - l + 1;
+    int n1 = m - l + 1; // +1: convert from index to counting number?
     int n2 = r - m;
     
     /* create temp arrays */
@@ -81,16 +81,18 @@ void merge(int arr[], int l, int m, int r)
         j++;
         k++;
     }
-
+    
 }
 
 
 void mergeSort(int arr[], int l, int r)
 {
     if (l < r) { 
-        int m = l + (r - l) / 2;
 
+        int m = l + (r - l) / 2;
+        
         mergeSort(arr, l, m);
+
         mergeSort(arr, m + 1, r);
 
         merge(arr, l, m, r);

@@ -86,9 +86,22 @@ int List_bubble_sort(List *words, List_compare cmp)
 
 List *List_merge_sort(List *list, List_compare cmp)
 {
+    
+    list = List_create();
+
+    List_push(list, "test1 data");
+    List_push(list, "test2 data");
+    List_push(list, "test3 data");
+    
+    
+
+
+    // Placeholder use for cmp()
     int test = cmp("hello","goodbye");
     if (test){
         return list;
     }
+
+
     return list;
 }
