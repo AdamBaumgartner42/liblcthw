@@ -3,9 +3,12 @@
 #include <assert.h>
 #include <string.h>
 
-char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS" };
+char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS"};
+
+//char *values[] = { "test0", "test1", "test2", "test3" "test4", "test5", "test6", "test7", "test8", "test9"};
 
 #define NUM_VALUES 5
+//#define NUM_VALUES 10
 
 List *create_words()
 {
@@ -63,11 +66,12 @@ char *test_bubble_sort()
 char *test_merge_sort()
 {
     List *words = create_words();
+    
 
     // should work on a list that needs sorting
     List *res = List_merge_sort(words, (List_compare) strcmp);
     mu_assert(is_sorted(res), "Words are not sorted after merge sort.");
-
+    
     // should work on a list that does not need sorting
     List *res2 = List_merge_sort(res, (List_compare) strcmp);
     mu_assert(is_sorted(res),"Merge sort failed.");
@@ -83,7 +87,7 @@ char *all_tests()
     mu_suite_start();
 
     mu_run_test(test_bubble_sort);
-    //mu_run_test(test_merge_sort);
+    mu_run_test(test_merge_sort);
 
     return NULL;
 }

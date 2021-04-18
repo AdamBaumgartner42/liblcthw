@@ -36,6 +36,7 @@ List_half_split	src/list.c	/^void List_half_split(List *total, List *listA, List
 List_insert_after	src/list.c	/^void List_insert_after(List *list, ListNode *node, void *value)$/;"	f	typeref:typename:void
 List_join	src/list.c	/^void List_join(List *listA, List *listB, List *target)$/;"	f	typeref:typename:void
 List_last	src/lcthw/list.h	/^#define List_last(/;"	d
+List_merge	src/list_algos.c	/^List *List_merge(List *left, List *right, List_compare cmp)$/;"	f	typeref:typename:List *
 List_merge_sort	src/list_algos.c	/^List *List_merge_sort(List *list, List_compare cmp)$/;"	f	typeref:typename:List *
 List_pop	src/list.c	/^void *List_pop(List * list)$/;"	f	typeref:typename:void *
 List_push	src/list.c	/^void List_push(List * list, void *value)$/;"	f	typeref:typename:void
@@ -149,4 +150,4 @@ tests	Makefile	/^tests: $(TESTS)$/;"	t
 tests	Makefile	/^tests: CFLAGS += $(TARGET)$/;"	t
 tests_run	tests/minunit.h	/^int tests_run;$/;"	v	typeref:typename:int
 value	src/lcthw/list.h	/^    void *value; $/;"	m	struct:ListNode	typeref:typename:void *
-values	tests/list_algos_tests.c	/^char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS" };$/;"	v	typeref:typename:char * []
+values	tests/list_algos_tests.c	/^char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS"};$/;"	v	typeref:typename:char * []
