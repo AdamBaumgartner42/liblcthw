@@ -1,5 +1,7 @@
-CFLAGS=-g -O0 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)
-LIBS=-ldl $(OPTLIBS)
+CFLAGS=-g -O2 -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) -rdynamic -DNDEBUG $(OPTFLAGS)
+COMMON_LIBS = $(shell pkg-config --libs libbsd) -ldl $(OPTLIBS)
+LDLIBS=$(COMMON_LIBS)
+
 PREFIX?=/usr/local
 UNAME=$(shell uname)
 
@@ -15,7 +17,7 @@ SO_TARGET=$(patsubst %.a,%.so,$(TARGET))
 # The Target Build
 all: $(TARGET) $(SO_TARGET) tests
 
-dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)
+dev: CFLAGS=-g -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) $(OPTFLAGS)
 dev: all
 
 ifeq ($(UNAME), Darwin) #OSX
@@ -40,7 +42,7 @@ build:
 
 # The Unit Tests
 .PHONY: tests
-tests: CFLAGS += $(TARGET)
+tests: LDLIBS = $(TARGET) $(COMMON_LIBS)
 tests: $(TESTS)
 	sh ./tests/runtests_book.sh
 

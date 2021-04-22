@@ -15,8 +15,9 @@ $(TARGET)	Makefile	/^$(TARGET): build $(OBJECTS)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
 Bubble_sort	src/array_algos.c	/^int *Bubble_sort(int *numbers, int count, compare_cb cmp)$/;"	f	typeref:typename:int *
-CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -DNDEBUG $(OPTFLAGS)$/;"	m
-CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) -rdynamic -DNDEBUG $(OPTFL/;"	m
+CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) $(OPTFLAGS)$/;"	m
+COMMON_LIBS	Makefile	/^COMMON_LIBS = $(shell pkg-config --libs libbsd) -ldl $(OPTLIBS)$/;"	m
 DArray	src/lcthw/darray.h	/^typedef struct DArray {$/;"	s
 DArray	src/lcthw/darray.h	/^} DArray;$/;"	t	typeref:struct:DArray
 DArray_clear	src/darray.c	/^void DArray_clear(DArray * array)$/;"	f	typeref:typename:void
@@ -31,8 +32,10 @@ DArray_expand	src/darray.c	/^int DArray_expand(DArray * array)$/;"	f	typeref:typ
 DArray_first	src/lcthw/darray.h	/^#define DArray_first(/;"	d
 DArray_free	src/lcthw/darray.h	/^#define DArray_free(/;"	d
 DArray_get	src/lcthw/darray.h	/^static inline void *DArray_get(DArray * array, int i)$/;"	f	typeref:typename:void *
+DArray_heapsort	src/darray_algos.c	/^int DArray_heapsort(DArray *array, DArray_compare cmp)$/;"	f	typeref:typename:int
 DArray_last	src/lcthw/darray.h	/^#define DArray_last(/;"	d
 DArray_max	src/lcthw/darray.h	/^#define DArray_max(/;"	d
+DArray_mergesort	src/darray_algos.c	/^int DArray_mergesort(DArray *array, DArray_compare cmp)$/;"	f	typeref:typename:int
 DArray_new	src/lcthw/darray.h	/^static inline void *DArray_new(DArray * array)$/;"	f	typeref:typename:void *
 DArray_pop	src/darray.c	/^void *DArray_pop(DArray * array)$/;"	f	typeref:typename:void *
 DArray_push	src/darray.c	/^int DArray_push(DArray * array, void *el)$/;"	f	typeref:typename:int
@@ -41,7 +44,8 @@ DArray_remove	src/lcthw/darray.h	/^static inline void *DArray_remove(DArray * ar
 DArray_resize	src/darray.c	/^static inline int DArray_resize(DArray * array, size_t newsize)$/;"	f	typeref:typename:int	file:
 DArray_set	src/lcthw/darray.h	/^static inline void DArray_set(DArray * array, int i, void *el)$/;"	f	typeref:typename:void
 DEFAULT_EXPAND_RATE	src/lcthw/darray.h	/^#define DEFAULT_EXPAND_RATE /;"	d
-LIBS	Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m
+LDLIBS	Makefile	/^LDLIBS=$(COMMON_LIBS)$/;"	m
+LDLIBS	Makefile	/^tests: LDLIBS = $(TARGET) $(COMMON_LIBS)$/;"	m
 LIST_FORBOTH	src/lcthw/list.h	/^#define LIST_FORBOTH(/;"	d
 LIST_FOREACH	src/lcthw/list.h	/^#define LIST_FOREACH(/;"	d
 LIST_FORNEXT	src/lcthw/list.h	/^#define LIST_FORNEXT(/;"	d
@@ -107,7 +111,7 @@ create_words	tests/darray_algos_tests.c	/^DArray *create_words()$/;"	f	typeref:t
 create_words	tests/list_algos_tests.c	/^List *create_words()$/;"	f	typeref:typename:List *
 darray_algos_h	src/lcthw/darray_algos.h	/^#define darray_algos_h$/;"	d
 debug	src/lcthw/dbg.h	/^#define debug(/;"	d
-dev	Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra  $(OPTFLAGS)$/;"	t
+dev	Makefile	/^dev: CFLAGS=-g -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) $(OPTFLAGS)$/;"	t
 dev	Makefile	/^dev: all$/;"	t
 element_size	src/lcthw/darray.h	/^    size_t element_size;$/;"	m	struct:DArray	typeref:typename:size_t
 end	src/lcthw/darray.h	/^    int end;$/;"	m	struct:DArray	typeref:typename:int
@@ -182,9 +186,11 @@ test_destroy	tests/darray_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:
 test_destroy	tests/list_tests.c	/^char *test_destroy()$/;"	f	typeref:typename:char *
 test_expand_contract	tests/darray_tests.c	/^char *test_expand_contract()$/;"	f	typeref:typename:char *
 test_get	tests/darray_tests.c	/^char *test_get()$/;"	f	typeref:typename:char *
+test_heapsort	tests/darray_algos_tests.c	/^char *test_heapsort()$/;"	f	typeref:typename:char *
 test_insert_after	tests/list_tests.c	/^char *test_insert_after()$/;"	f	typeref:typename:char *
 test_merge_sort	tests/array_algos_tests.c	/^char *test_merge_sort()$/;"	f	typeref:typename:char *
 test_merge_sort	tests/list_algos_tests.c	/^char *test_merge_sort()$/;"	f	typeref:typename:char *
+test_mergesort	tests/darray_algos_tests.c	/^char *test_mergesort()$/;"	f	typeref:typename:char *
 test_new	tests/darray_tests.c	/^char *test_new()$/;"	f	typeref:typename:char *
 test_push_pop	tests/darray_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
@@ -196,7 +202,7 @@ test_shift	tests/list_tests.c	/^char *test_shift()$/;"	f	typeref:typename:char *
 test_unshift	tests/list_tests.c	/^char *test_unshift()$/;"	f	typeref:typename:char *
 testcmp	tests/darray_algos_tests.c	/^int testcmp(char **a, char **b)$/;"	f	typeref:typename:int
 tests	Makefile	/^tests: $(TESTS)$/;"	t
-tests	Makefile	/^tests: CFLAGS += $(TARGET)$/;"	t
+tests	Makefile	/^tests: LDLIBS = $(TARGET) $(COMMON_LIBS)$/;"	t
 tests_run	tests/minunit.h	/^int tests_run;$/;"	v	typeref:typename:int
 val1	tests/darray_tests.c	/^static int *val1 = NULL;$/;"	v	typeref:typename:int *	file:
 val2	tests/darray_tests.c	/^static int *val2 = NULL;$/;"	v	typeref:typename:int *	file:
