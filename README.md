@@ -7,3 +7,10 @@ Input:
 computer:~/liblcthw_ab$ make
 
 
+Notes:
+
+Ubuntu:
+// requires lib bsd
+$ sudo apt-get install libbsd-dev
+
+
