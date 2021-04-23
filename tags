@@ -15,6 +15,7 @@ $(TARGET)	Makefile	/^$(TARGET): build $(OBJECTS)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(LIBS) $(SO_TARGET)$/;"	t
 $(TESTS)	Makefile	/^$(TESTS): $(TARGET) $(SO_TARGET)$/;"	t
 Bubble_sort	src/array_algos.c	/^int *Bubble_sort(int *numbers, int count, compare_cb cmp)$/;"	f	typeref:typename:int *
+ByteOf	src/radixmap.c	/^#define ByteOf(/;"	d	file:
 CFLAGS	Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) -rdynamic -DNDEBUG $(OPTFL/;"	m
 CFLAGS	Makefile	/^dev: CFLAGS=-g -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) $(OPTFLAGS)$/;"	m
 COMMON_LIBS	Makefile	/^COMMON_LIBS = $(shell pkg-config --libs libbsd) -ldl $(OPTLIBS)$/;"	m
@@ -75,7 +76,17 @@ List_unshift	src/list.c	/^void List_unshift(List * list, void *value)$/;"	f	type
 NUM_VALUES	tests/list_algos_tests.c	/^#define NUM_VALUES /;"	d	file:
 OBJECTS	Makefile	/^OBJECTS=$(patsubst %.c,%.o,$(SOURCES))$/;"	m
 PREFIX	Makefile	/^PREFIX?=\/usr\/local$/;"	m
+RMElement	src/lcthw/radixmap.h	/^typedef union RMElement {$/;"	u
+RMElement	src/lcthw/radixmap.h	/^} RMElement; $/;"	t	typeref:union:RMElement
 RUN_TESTS	tests/minunit.h	/^#define RUN_TESTS(/;"	d
+RadixMap	src/lcthw/radixmap.h	/^typedef struct RadixMap {$/;"	s
+RadixMap	src/lcthw/radixmap.h	/^} RadixMap;$/;"	t	typeref:struct:RadixMap
+RadixMap_add	src/radixmap.c	/^int RadixMap_add(RadixMap *map, uint32_t key, uint32_t value)$/;"	f	typeref:typename:int
+RadixMap_create	src/radixmap.c	/^RadixMap *RadixMap_create(size_t max)$/;"	f	typeref:typename:RadixMap *
+RadixMap_delete	src/radixmap.c	/^int RadixMap_delete(RadixMap *map, RMElement *el)$/;"	f	typeref:typename:int
+RadixMap_destroy	src/radixmap.c	/^void RadixMap_destroy(RadixMap *map)$/;"	f	typeref:typename:void
+RadixMap_find	src/radixmap.c	/^RMElement *RadixMap_find(RadixMap *map, uint32_t to_find)$/;"	f	typeref:typename:RMElement *
+RadixMap_sort	src/radixmap.c	/^void RadixMap_sort(RadixMap *map)$/;"	f	typeref:typename:void
 SOURCES	Makefile	/^SOURCES=$(wildcard src\/**\/*.c src\/*.c)$/;"	m
 SO_TARGET	Makefile	/^SO_TARGET=$(patsubst %.a,%.so,$(TARGET))$/;"	m
 TARGET	Makefile	/^TARGET=build\/liblcthw.a$/;"	m
@@ -83,8 +94,8 @@ TESTS	Makefile	/^TESTS=$(patsubst %.c,%,$(TEST_SRC))$/;"	m
 TEST_SRC	Makefile	/^TEST_SRC=$(wildcard tests\/*_tests.c)$/;"	m
 UNAME	Makefile	/^UNAME=$(shell uname)$/;"	m
 _DArray_h	src/lcthw/darray.h	/^#define _DArray_h$/;"	d
-_GNU_SOURCE	src/darray_algos.c	/^#define _GNU_SOURCE$/;"	d	file:
 _GNU_SOURCE	src/lcthw/darray_algos.h	/^#define _GNU_SOURCE$/;"	d
+__anonb12bb0f90108	src/lcthw/radixmap.h	/^    struct {$/;"	s	union:RMElement
 __dbg_h__	src/lcthw/dbg.h	/^#define __dbg_h__$/;"	d
 _minunit_h	tests/minunit.h	/^#define _minunit_h$/;"	d
 all	Makefile	/^all: $(TARGET) $(SO_TARGET) tests$/;"	t
@@ -93,28 +104,34 @@ all_tests	tests/darray_algos_tests.c	/^char *all_tests()$/;"	f	typeref:typename:
 all_tests	tests/darray_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
 all_tests	tests/list_algos_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
 all_tests	tests/list_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
+all_tests	tests/radixmap_tests.c	/^char *all_tests()$/;"	f	typeref:typename:char *
 array	tests/darray_tests.c	/^static DArray *array = NULL;$/;"	v	typeref:typename:DArray *	file:
 build	Makefile	/^build:$/;"	t
 check	Makefile	/^check:$/;"	t
 check	src/lcthw/dbg.h	/^#define check(/;"	d
 check_debug	src/lcthw/dbg.h	/^#define check_debug(/;"	d
 check_mem	src/lcthw/dbg.h	/^#define check_mem(/;"	d
+check_order	tests/radixmap_tests.c	/^static int check_order(RadixMap *map)$/;"	f	typeref:typename:int	file:
 clean	Makefile	/^clean:$/;"	t
 clean_errno	src/lcthw/dbg.h	/^#define clean_errno(/;"	d
 compare_cb	src/lcthw/array_algos.h	/^typedef int (*compare_cb) (int a, int b);$/;"	t	typeref:typename:int (*)(int a,int b)
 contents	src/lcthw/darray.h	/^    void **contents;$/;"	m	struct:DArray	typeref:typename:void **
+contents	src/lcthw/radixmap.h	/^    RMElement *contents;$/;"	m	struct:RadixMap	typeref:typename:RMElement *
 copy_create	tests/list_tests.c	/^char *copy_create()$/;"	f	typeref:typename:char *
 copy_destroy	tests/list_tests.c	/^char *copy_destroy()$/;"	f	typeref:typename:char *
 copy_list	tests/list_tests.c	/^char *copy_list()$/;"	f	typeref:typename:char *
 count	src/lcthw/list.h	/^    int count; $/;"	m	struct:List	typeref:typename:int
+counter	src/lcthw/radixmap.h	/^    uint32_t counter;$/;"	m	struct:RadixMap	typeref:typename:uint32_t
 create_words	tests/darray_algos_tests.c	/^DArray *create_words()$/;"	f	typeref:typename:DArray *
 create_words	tests/list_algos_tests.c	/^List *create_words()$/;"	f	typeref:typename:List *
 darray_algos_h	src/lcthw/darray_algos.h	/^#define darray_algos_h$/;"	d
+data	src/lcthw/radixmap.h	/^    } data;$/;"	m	union:RMElement	typeref:struct:RMElement::__anonb12bb0f90108
 debug	src/lcthw/dbg.h	/^#define debug(/;"	d
 dev	Makefile	/^dev: CFLAGS=-g -Wall -Wextra -Isrc $(shell pkg-config --cflags libbsd) $(OPTFLAGS)$/;"	t
 dev	Makefile	/^dev: all$/;"	t
 element_size	src/lcthw/darray.h	/^    size_t element_size;$/;"	m	struct:DArray	typeref:typename:size_t
 end	src/lcthw/darray.h	/^    int end;$/;"	m	struct:DArray	typeref:typename:int
+end	src/lcthw/radixmap.h	/^    size_t end;$/;"	m	struct:RadixMap	typeref:typename:size_t
 expand_rate	src/lcthw/darray.h	/^    size_t expand_rate;$/;"	m	struct:DArray	typeref:typename:size_t
 first	src/lcthw/list.h	/^    ListNode *first;$/;"	m	struct:List	typeref:typename:ListNode *
 install	Makefile	/^install: all$/;"	t
@@ -127,6 +144,7 @@ join_list	tests/list_tests.c	/^char *join_list()$/;"	f	typeref:typename:char *
 join_push_1	tests/list_tests.c	/^char *join_push_1()$/;"	f	typeref:typename:char *
 join_push_2	tests/list_tests.c	/^char *join_push_2()$/;"	f	typeref:typename:char *
 join_push_3	tests/list_tests.c	/^char *join_push_3()$/;"	f	typeref:typename:char *
+key	src/lcthw/radixmap.h	/^        uint32_t key;$/;"	m	struct:RMElement::__anonb12bb0f90108	typeref:typename:uint32_t
 last	src/lcthw/list.h	/^    ListNode *last;$/;"	m	struct:List	typeref:typename:ListNode *
 lcthw_List_h	src/lcthw/list.h	/^#define lcthw_List_h$/;"	d
 lcthw_array_algos_h	src/lcthw/array_algos.h	/^#define lcthw_array_algos_h$/;"	d
@@ -139,8 +157,10 @@ list_copy	tests/list_tests.c	/^static List *list_copy = NULL;$/;"	v	typeref:type
 log_err	src/lcthw/dbg.h	/^#define log_err(/;"	d
 log_info	src/lcthw/dbg.h	/^#define log_info(/;"	d
 log_warn	src/lcthw/dbg.h	/^#define log_warn(/;"	d
+make_random	tests/radixmap_tests.c	/^static int make_random(RadixMap *map)$/;"	f	typeref:typename:int	file:
 mark	tests/list_tests.c	/^static ListNode *mark = NULL;$/;"	v	typeref:typename:ListNode *	file:
 max	src/lcthw/darray.h	/^    int max;$/;"	m	struct:DArray	typeref:typename:int
+max	src/lcthw/radixmap.h	/^    size_t max; $/;"	m	struct:RadixMap	typeref:typename:size_t
 merge	src/array_algos.c	/^void merge(int arr[], int l, int m, int r)$/;"	f	typeref:typename:void
 mergeSort	src/array_algos.c	/^void mergeSort(int arr[], int l, int r)$/;"	f	typeref:typename:void
 mu_assert	tests/minunit.h	/^#define mu_assert(/;"	d
@@ -151,7 +171,9 @@ prev	src/lcthw/list.h	/^    struct ListNode *prev;$/;"	m	struct:ListNode	typeref
 print_List	src/list.c	/^void print_List(List *list)$/;"	f	typeref:typename:void
 print_array	src/array_algos.c	/^void print_array(int *array, int count)$/;"	f	typeref:typename:void
 print_cmp_log	src/list_algos.c	/^void print_cmp_log(char *s1, char *s2, int val)$/;"	f	typeref:typename:void
+radix_sort	src/radixmap.c	/^static inline void radix_sort(short offset, uint64_t max,$/;"	f	typeref:typename:void	file:
 random_array	tests/array_algos_tests.c	/^int random_array[] = { 3, 7, 5, 8, 1, 4};$/;"	v	typeref:typename:int[]
+raw	src/lcthw/radixmap.h	/^    uint64_t raw;$/;"	m	union:RMElement	typeref:typename:uint64_t
 reverse_create	tests/list_tests.c	/^char *reverse_create()$/;"	f	typeref:typename:char *
 reverse_destroy	tests/list_tests.c	/^char *reverse_destroy()$/;"	f	typeref:typename:char *
 reverse_list	tests/list_tests.c	/^char *reverse_list()$/;"	f	typeref:typename:char *
@@ -169,6 +191,7 @@ split_push_even_result	tests/list_tests.c	/^char *split_push_even_result()$/;"	f
 split_push_odd	tests/list_tests.c	/^char *split_push_odd()$/;"	f	typeref:typename:char *
 split_push_odd_result	tests/list_tests.c	/^char *split_push_odd_result()$/;"	f	typeref:typename:char *
 swapListNode	src/list_algos.c	/^int swapListNode(List *list, ListNode *cur, ListNode *next)$/;"	f	typeref:typename:int
+temp	src/lcthw/radixmap.h	/^    RMElement *temp; $/;"	m	struct:RadixMap	typeref:typename:RMElement *
 test1	tests/list_tests.c	/^char *test1 = "test1 data";$/;"	v	typeref:typename:char *
 test2	tests/list_tests.c	/^char *test2 = "test2 data";$/;"	v	typeref:typename:char *
 test3	tests/list_tests.c	/^char *test3 = "test3 data";$/;"	v	typeref:typename:char *
@@ -192,11 +215,13 @@ test_merge_sort	tests/array_algos_tests.c	/^char *test_merge_sort()$/;"	f	typere
 test_merge_sort	tests/list_algos_tests.c	/^char *test_merge_sort()$/;"	f	typeref:typename:char *
 test_mergesort	tests/darray_algos_tests.c	/^char *test_mergesort()$/;"	f	typeref:typename:char *
 test_new	tests/darray_tests.c	/^char *test_new()$/;"	f	typeref:typename:char *
+test_operations	tests/radixmap_tests.c	/^static char *test_operations()$/;"	f	typeref:typename:char *	file:
 test_push_pop	tests/darray_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
 test_push_pop	tests/list_tests.c	/^char *test_push_pop()$/;"	f	typeref:typename:char *
 test_qsort	tests/darray_algos_tests.c	/^char *test_qsort()$/;"	f	typeref:typename:char *
 test_remove	tests/darray_tests.c	/^char *test_remove()$/;"	f	typeref:typename:char *
 test_remove	tests/list_tests.c	/^char *test_remove()$/;"	f	typeref:typename:char *
+test_search	tests/radixmap_tests.c	/^static int test_search(RadixMap *map)$/;"	f	typeref:typename:int	file:
 test_set	tests/darray_tests.c	/^char *test_set()$/;"	f	typeref:typename:char *
 test_shift	tests/list_tests.c	/^char *test_shift()$/;"	f	typeref:typename:char *
 test_unshift	tests/list_tests.c	/^char *test_unshift()$/;"	f	typeref:typename:char *
@@ -207,4 +232,5 @@ tests_run	tests/minunit.h	/^int tests_run;$/;"	v	typeref:typename:int
 val1	tests/darray_tests.c	/^static int *val1 = NULL;$/;"	v	typeref:typename:int *	file:
 val2	tests/darray_tests.c	/^static int *val2 = NULL;$/;"	v	typeref:typename:int *	file:
 value	src/lcthw/list.h	/^    void *value; $/;"	m	struct:ListNode	typeref:typename:void *
+value	src/lcthw/radixmap.h	/^        uint32_t value;$/;"	m	struct:RMElement::__anonb12bb0f90108	typeref:typename:uint32_t
 values	tests/list_algos_tests.c	/^char *values[] = { "XXXX", "1234", "abcd", "xjvef", "NDSS"};$/;"	v	typeref:typename:char * []
