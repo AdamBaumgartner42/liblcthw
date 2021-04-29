@@ -10,13 +10,13 @@
 
 RadixMap *RadixMap_create(size_t max)
 {
-   RadixMap *map = calloc(sizeof(RadixMap), 1);
+   RadixMap *map = calloc(1, sizeof(RadixMap));
    check_mem(map);
 
-   map->contents = calloc(sizeof(RMElement), max + 1);
+   map->contents = calloc(max + 1, sizeof(RMElement));
    check_mem(map->contents);
 
-   map->temp = calloc(sizeof(RMElement), max + 1);
+   map->temp = calloc(max + 1, sizeof(RMElement));
    check_mem(map->temp);
 
    map->max = max;
@@ -84,9 +84,8 @@ void RadixMap_sort(RadixMap *map)
 RMElement *RadixMap_find(RadixMap *map, uint32_t to_find)
 {
     int low = 0;
-    int high = map->end - 1; // why not map->end ? 
+    int high = map->end - 1; 
     RMElement *data = map->contents;
-
 
     while (low <= high) {
         int middle = low + (high - low) / 2;

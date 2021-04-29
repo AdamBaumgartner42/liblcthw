@@ -25,13 +25,13 @@ static int check_order(RadixMap *map)
     RMElement d1, d2;
     unsigned int i = 0;
 
-    // only signal errors if an (should not be)
+    // only signal errors if any (should not be)
     for (i = 0; map->end > 0 && i < map->end - 1; i++) {
         d1 = map->contents[i];
         d2 = map->contents[i + 1];
 
         if (d1.data.key > d2.data.key) { 
-            debug("FAIL:i=%u, key: %u, value: %u, equals max ? %d\n", i, 
+            printf("d1 FAIL:i=%u, key: %u, value: %u, equals max ? %d\n", i, 
                     d1.data.key, d1.data.value, 
                     d1.data.key == UINT32_MAX);
             return 0;
