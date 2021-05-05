@@ -13,4 +13,6 @@ Ubuntu:
 // requires lib bsd
 $ sudo apt-get install libbsd-dev
 
+Issues:
+OSX -> current not compiling
 
